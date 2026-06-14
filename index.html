@@ -357,10 +357,10 @@ const MIMGS = {
     SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
   },
   373:{
-    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+    SHOTARO:[I('frrjrtfy'),I('x3rcr86q'),I('43f5unza')]
   },
   374:{
-    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+    SHOTARO:[I('2aybdaft')]
   },
   // ── DAY 4 ──────────────────────────────────────────────────────
   // SPOT 40: Station 表單K:全部
@@ -489,6 +489,24 @@ const MIMGS = {
   65:{
     ANTON:[I('2s33gemk'),I('4r2z49mc'),I('q48wqbex'),I('g9j8dspb'),I('jygyjdyx'),
            I('mw7a9g8d'),I('vtk28d84'),I('ckjawwr7'),I('kxwj659q'),I('t3n388af')]
+  },
+  38:{
+    SUNGCHAN:[I('9zwz87as'),I('55jvxrk3'),I('e8zhpfhg'),I('w3xnzfvz'),I('gsmxwtha'),I('pw69yyu7'),null,I('z59fe9z3'),I('3gkuttna'),I('uu93ytv6'),I('typ35hc4'),I('d4p7u69u')]
+  },
+  45:{
+    EUNSEOK:[I('h32rdjt9'),I('zf4n5xfw'),I('n84f8pcv'),I('7ympfzxr'),I('68ns4yg7'),I('a6ufztpu'),I('6qzdgcdv'),I('2x9jwtgf'),I('8xkgmgvx'),I('wjkp3emf'),I('thhwvtr2')]
+  },
+  53:{
+    EUNSEOK:[I('h32rdjt9'),I('zf4n5xfw'),I('n84f8pcv'),I('7ympfzxr'),I('68ns4yg7'),I('a6ufztpu'),I('6qzdgcdv'),I('2x9jwtgf'),I('8xkgmgvx'),I('wjkp3emf'),I('thhwvtr2')]
+  },
+  54:{
+    EUNSEOK:[I('h32rdjt9'),I('zf4n5xfw'),I('n84f8pcv'),I('7ympfzxr'),I('68ns4yg7'),I('a6ufztpu'),I('6qzdgcdv'),I('2x9jwtgf'),I('8xkgmgvx'),I('wjkp3emf'),I('thhwvtr2')]
+  },
+  541:{
+    EUNSEOK:[I('h32rdjt9'),I('zf4n5xfw'),I('n84f8pcv'),I('7ympfzxr'),I('68ns4yg7'),I('a6ufztpu'),I('6qzdgcdv'),I('2x9jwtgf'),I('8xkgmgvx'),I('wjkp3emf'),I('thhwvtr2')]
+  },
+  46:{
+    EUNSEOK:[I('ktv2nuq9'),I('3fcebuke'),I('njmfya29'),I('tak7uggc'),I('kgaafny5'),I('5fzp3k6h'),I('j566hxq9'),I('vgmq28s9'),I('wej4v47z')]
   }
 };
 
@@ -553,6 +571,7 @@ const ALLPAGE_IMGS = {
 };
 
 const COVER_OVERRIDE = {
+  38:'83sa3pxm',
   621:'3rsvzbgr',
   563:'rhag7hqj',
   562:'dkgkzkk9',
@@ -663,19 +682,18 @@ function getAllImgs(s) {
   if (!MIMGS[s.id]) return [];
   const all = [];
   for (const m of s.members) { if (MIMGS[s.id][m]) all.push(...MIMGS[s.id][m]); }
-  return [...new Set(all)];
+  return [...new Set(all)].filter(u => u && typeof u === 'string');
 }
 
 function getMemberImgs(s, member) {
   const local = DATA_IMGS[s.id] || [];
   const allCdn = getAllImgs(s);
   // 一律顯示該景點所有成員的合併照片（不分成員）
-  return [...new Set([...allCdn, ...local])].slice(0,20);
+  return [...new Set([...allCdn, ...local])].filter(u => u && typeof u === 'string').slice(0,20);
 }
 
 // ── SPOTS DATA ────────────────────────────────────────────────────
 const spots = [
-/* ===== DAY 1 ===== */
 {
   id:1, name:"ヒルトン東京お台場", nameZh:"東京御台場希爾頓酒店",
   addr:"東京都港区台場1丁目9-1",
@@ -741,7 +759,7 @@ const spots = [
   sourceName:"RIIZE llog"
 },
 {
-  id:8, name:"潮風公園南", nameZh:"Shiokaze Park South（城市上方）",
+  id:8, name:"潮風公園南", nameZh:"Shiokaze Park South",
   addr:"東京都品川区東八潮",
   members:["SOHEE"], day:"DAY 1", type:"Monorail", region:"東京・品川区",
   mapsUrl:"https://maps.app.goo.gl/vFKxYRBpF71yGwaCA",
@@ -768,11 +786,10 @@ const spots = [
   id:14, name:"神奈川工科大学 - NEW HORIZON Trailer", nameZh:"神奈川工科大學 NEW HORIZON Trailer拍攝地",
   addr:"神奈川県厚木市下荻野（35°29'10.4″N 139°20'34.3″E）",
   members:["SOHEE"], day:"DAY 1", type:"Trailer Location", region:"神奈川・厚木市",
-  mapsUrl:"https://drive.google.com/drive/folders/1aSRXEQKSjbN8s-DjRL5D8b-KOzxjrPHk?usp=drive_link",
+  mapsUrl:"https://maps.app.goo.gl/Y2Ubj9EFmKngUAbQA",
   sourceUrl:"https://youtu.be/IeJcin9-biU?si=msQbJ31XU9f0o9ty",
   sourceName:"RIIZE llog · SOHEE"
 },
-/* ===== DAY 2 ===== */
 {
   id:20, name:"青海東臨時バス駐車場", nameZh:"青海東臨時巴士停車場",
   addr:"東京都江東区青海１丁目２−３３",
@@ -837,7 +854,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/fc7ce0fd-a9fe-4efe-b708-5fd445da2ace?member=sungchan",
   sourceName:"RIIZE llog"
 },
-/* ===== DAY 3 ===== */
 {
   id:30, name:"SKAC", nameZh:"SKWAT KAMEARI ART CENTRE 亀有藝術文化中心",
   addr:"東京都葛飾区西亀有3丁目26-4",
@@ -878,7 +894,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/fe0e368e-4f56-498c-9c0b-9db1d0e65493",
   sourceName:"RIIZE llog"
 },
-
 {
   id:36, name:"霊友会釈迦殿 駐車場", nameZh:"靈友會釋迦殿 停車場空地",
   addr:"東京都港区麻布台1丁目7-8",
@@ -935,7 +950,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/b7889bd6-4da8-47fb-99a8-52b13dd33787?member=sungchan",
   sourceName:"RIIZE llog"
 },
-/* ===== DAY 4 ===== */
 {
   id:40, name:"三崎口駅 京急", nameZh:"三崎口駅 京急（車站）",
   addr:"神奈川県三浦市初声町下宮田",
@@ -952,7 +966,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4b4eed95-aaf0-48cb-8fb5-db8e08da068f",
   sourceName:"RIIZE llog"
 },
-
 {
   id:43, name:"城ヶ島大橋", nameZh:"城ヶ島大橋（海岸大橋）",
   addr:"神奈川県三浦市8",
@@ -985,7 +998,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/d729b051-3ffa-4774-abdb-ae49b11f3e99?member=eunseok",
   sourceName:"RIIZE llog"
 },
-
 {
   id:50, name:"東京油組総本店 下北沢組", nameZh:"油蕎麥麵",
   addr:"東京都世田谷区北沢2-12-15",
@@ -1000,14 +1012,6 @@ const spots = [
   members:["SOHEE"], day:"DAY 4", type:"Live Music Venue", region:"東京・下北沢",
   mapsUrl:"https://maps.google.com/maps?q=Daisy+Bar+下北沢",
   sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/1be702e9-e934-4258-a81b-15e61fd1d852?member=sohee",
-  sourceName:"RIIZE llog"
-},
-{
-  id:52, name:"屏風ヶ浦", nameZh:"屏風ヶ浦 懸崖旁某處",
-  addr:"千葉県銚子市名洗町 〜 旭市上永井（刑部岬）",
-  members:["ANTON"], day:"DAY 4", type:"Somewhere Along the Cliffs", region:"千葉・銚子市",
-  mapsUrl:"https://maps.app.goo.gl/frtghjAfCeE34hAK9",
-  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/e06fd842-d970-481c-80d0-153f9ca6aa3e?member=anton",
   sourceName:"RIIZE llog"
 },
 {
@@ -1042,7 +1046,6 @@ const spots = [
   sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
   sourceName:"RIIZE llog"
 },
-
 {
   id:57, name:"pulu pulu pulpo!", nameZh:"pulu pulu pulpo!（章魚燒🐙）",
   addr:"神奈川県三浦市三崎3丁目5-13",
@@ -1084,6 +1087,14 @@ const spots = [
   sourceName:"RIIZE llog"
 },
 {
+  id:52, name:"屏風ヶ浦", nameZh:"屏風ヶ浦 懸崖旁某處",
+  addr:"千葉県銚子市名洗町 〜 旭市上永井（刑部岬）",
+  members:["ANTON"], day:"DAY 4", type:"Somewhere Along the Cliffs", region:"千葉・銚子市",
+  mapsUrl:"https://maps.app.goo.gl/frtghjAfCeE34hAK9",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/e06fd842-d970-481c-80d0-153f9ca6aa3e?member=anton",
+  sourceName:"RIIZE llog"
+},
+{
   id:58, name:"岩海岸バス停 / 電話亭", nameZh:"岩海岸巴士站 & 電話亭（Silent Walker）",
   addr:"神奈川県足柄下郡真鶴町岩（35°09'40.4″N 139°08'23.4″E）",
   members:["EUNSEOK"], day:"DAY 2", type:"Trailer : Silent Walker", region:"神奈川・真鶴町",
@@ -1091,7 +1102,6 @@ const spots = [
   sourceUrl:"https://www.youtube.com/watch?v=fHrPPuU_7QQ",
   sourceName:"RIIZE llog"
 },
-/* ===== DAY 5 ===== */
 {
   id:60, name:"チームラボプラネッツ TOKYO DMM", nameZh:"沉浸式美術館",
   addr:"東京都江東区豊洲6-1-16",
@@ -1117,19 +1127,19 @@ const spots = [
   sourceName:"RIIZE llog"
 },
 {
-  id:63, name:"ふきや旅館", nameZh:"湯河原溫泉 旅館",
-  addr:"神奈川県足柄下郡湯河原町宮上398",
-  members:["SUNGCHAN"], day:"DAY 5", type:"Ryokan", region:"神奈川・湯河原町",
-  mapsUrl:"https://maps.app.goo.gl/doapKxAaRz1toQtq6",
-  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/ca5688eb-9f87-4b4d-b12e-491d82ad3daa?member=sungchan",
-  sourceName:"RIIZE llog"
-},
-{
   id:621, name:"コトブキヤ秋葉原館店", nameZh:"KOTOBUKIYA 秋葉原本店",
   addr:"東京都千代田区外神田１丁目８−８ 岡嶋ビル",
   members:["EUNSEOK"], day:"DAY 5", type:"Figure Shop", region:"東京・秋葉原",
   mapsUrl:"https://maps.app.goo.gl/TPbsA84q7YK7Wne98",
   sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/dda9ec6d-90ae-4255-a605-73d9d6b929aa?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:63, name:"ふきや旅館", nameZh:"湯河原溫泉 旅館",
+  addr:"神奈川県足柄下郡湯河原町宮上398",
+  members:["SUNGCHAN"], day:"DAY 5", type:"Ryokan", region:"神奈川・湯河原町",
+  mapsUrl:"https://maps.app.goo.gl/doapKxAaRz1toQtq6",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/ca5688eb-9f87-4b4d-b12e-491d82ad3daa?member=sungchan",
   sourceName:"RIIZE llog"
 },
 {
@@ -1147,7 +1157,8 @@ const spots = [
   mapsUrl:"https://maps.app.goo.gl/s78enMxf4sp9G54S7",
   sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/8a7b5173-fd31-4b82-bbf0-e751848c3ac2?member=anton",
   sourceName:"RIIZE llog"
-},
+}
+
 ];
 
 const REGION_ORDER = [
@@ -1320,7 +1331,7 @@ function openSheet(id, filter) {
   }
 
   // Images: member-specific CDN + local
-  const cdnImgs=getMemberImgs(s,f).filter(u=>u.endsWith('-image-2200.jpg'));
+  const cdnImgs=getMemberImgs(s,f).filter(u=>u&&u.endsWith('-image-2200.jpg'));
   const localImgs=DATA_IMGS[s.id]||[];
   const imgs=[...cdnImgs,...localImgs];
   const track=document.getElementById('sheet-imgs');
