@@ -3,234 +3,1366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RIIZE 《II》聖地巡禮</title>
+<title>RIIZE【II】聖地巡禮 · Location Archive & Filming Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:#f5f4f0;color:#1a1a1a;min-height:100vh}
-  header{background:#fff;border-bottom:0.5px solid #e0ddd6;padding:16px 20px;position:sticky;top:0;z-index:100}
-  .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-  .logo{font-size:15px;font-weight:600;letter-spacing:.02em}
-  .logo span{color:#9b8fd4}
-  .filter-wrap{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch}
-  .filter-wrap::-webkit-scrollbar{display:none}
-  .pill{flex-shrink:0;font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;border:0.5px solid #d0cdc6;background:#fff;color:#555;cursor:pointer;transition:all .15s;white-space:nowrap}
-  .pill.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
-  .pill.member-SHOTARO.active{background:#378ADD;border-color:#378ADD}
-  .pill.member-EUNSEOK.active{background:#EF9F27;border-color:#EF9F27}
-  .pill.member-SUNGCHAN.active{background:#639922;border-color:#639922}
-  .pill.member-WONBIN.active{background:#7F77DD;border-color:#7F77DD}
-  .pill.member-SOHEE.active{background:#D4537E;border-color:#D4537E}
-  .pill.member-ANTON.active{background:#BA7517;border-color:#BA7517}
-  .pill.day-1.active{background:#534AB7;border-color:#534AB7}
-  .pill.day-2.active{background:#0F6E56;border-color:#0F6E56}
-  .pill.day-3.active{background:#993C1D;border-color:#993C1D}
-  .pill.day-4.active{background:#A32D2D;border-color:#A32D2D}
-  .pill.day-5.active{background:#3C3489;border-color:#3C3489}
-  .tab-bar{display:flex;gap:0;margin-bottom:0}
-  .tab{flex:1;text-align:center;font-size:13px;font-weight:500;padding:8px 0;color:#888;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s}
-  .tab.active{color:#1a1a1a;border-bottom:2px solid #1a1a1a}
-  main{padding:16px}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .card{background:#fff;border-radius:14px;overflow:hidden;border:0.5px solid #e8e5de;cursor:pointer;transition:transform .1s}
-  .card:active{transform:scale(.98)}
-  .card-img{position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:#eee}
-  .card-img img{width:100%;height:100%;object-fit:cover;display:block}
-  .card-img .badge-day{position:absolute;top:8px;left:8px;font-size:10px;font-weight:600;padding:3px 7px;border-radius:10px;background:rgba(0,0,0,.55);color:#fff;backdrop-filter:blur(4px)}
-  .card-body{padding:9px 10px 11px}
-  .card-name{font-size:13px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .card-addr{font-size:10px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px}
-  .card-tags{display:flex;gap:4px;flex-wrap:wrap}
-  .tag{font-size:10px;font-weight:500;padding:2px 6px;border-radius:8px}
-  .tag-member{background:#f0eeff;color:#534AB7}
-  .tag-type{background:#e8f5ee;color:#0F6E56}
-  .empty{text-align:center;padding:60px 20px;color:#aaa;font-size:14px}
-
-  /* Modal */
-  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;justify-content:center}
-  .modal-bg.open{display:flex}
-  .modal{background:#fff;border-radius:20px 20px 0 0;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .modal-imgs{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
-  .modal-imgs::-webkit-scrollbar{height:3px}
-  .modal-imgs::-webkit-scrollbar-thumb{background:#ccc;border-radius:2px}
-  .modal-img-track{display:flex;gap:2px}
-  .modal-img-track img{flex:0 0 80vw;max-width:320px;height:220px;object-fit:cover;scroll-snap-align:start;border-radius:0}
-  .modal-body{padding:16px 18px 32px}
-  .modal-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-  .modal-tag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:12px}
-  .modal-name{font-size:20px;font-weight:700;margin-bottom:4px}
-  .modal-addr{font-size:13px;color:#666;margin-bottom:14px;line-height:1.5}
-  .modal-divider{border:none;border-top:0.5px solid #e8e5de;margin:12px 0}
-  .modal-source{font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
-  .modal-source a{color:#378ADD;text-decoration:none;font-weight:500}
-  .modal-map{margin-top:12px;border-radius:12px;overflow:hidden;border:0.5px solid #e8e5de}
-  .modal-map iframe{width:100%;height:200px;border:none;display:block}
-  .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.4);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
-  .modal-top{position:relative}
-  .drag-handle{width:36px;height:4px;background:#e0ddd6;border-radius:2px;margin:10px auto 0}
-  .count{font-size:12px;color:#aaa;margin-left:auto}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F3EE;--card:#FFFFFF;--border:#E4DDD3;
+  --text:#1A1714;--sub:#7A7068;--accent:#1A1714;
+  --SHOTARO:#F472B6;--EUNSEOK:#FBBF24;--SUNGCHAN:#A78BFA;
+  --WONBIN:#F87171;--SOHEE:#38BDF8;--ANTON:#4ADE80;
+  --DAY1:#1E3A5F;--DAY2:#14532D;--DAY3:#7C2D12;--DAY4:#831843;--DAY5:#312E81;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;margin:0;padding:0}
+header{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 14px;margin-top:0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:50px}
+.logo{font-family:'Noto Serif JP',serif;font-size:13px;font-weight:700;letter-spacing:.02em;line-height:1.3}
+.logo-sub{font-size:9px;color:var(--sub);font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.spot-count{font-size:10px;color:var(--sub);font-family:'DM Mono',monospace;letter-spacing:.05em}
+.tab-row{display:flex;border-bottom:1px solid var(--border)}
+.tab{flex:1;text-align:center;padding:9px 0;font-size:11px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;letter-spacing:.06em;text-transform:uppercase}
+.tab.active{color:var(--text);border-bottom:2px solid var(--text)}
+.filter-wrap{padding:10px 0 0;transition:none}
+.filter-wrap.hidden{height:0;padding:0;overflow:hidden;visibility:hidden}
+.filter-row{display:flex;gap:5px;overflow-x:auto;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.filter-row::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;font-size:10px;font-weight:600;padding:4px 11px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--sub);cursor:pointer;transition:all .15s;letter-spacing:.04em;font-family:'DM Sans',sans-serif}
+.chip.active{color:#fff;border-color:transparent}
+.chip.all.active{background:var(--accent)}
+.chip.SHOTARO.active{background:var(--SHOTARO)}
+.chip.EUNSEOK.active{background:var(--EUNSEOK);color:#1A1714}
+.chip.SUNGCHAN.active{background:var(--SUNGCHAN)}
+.chip.WONBIN.active{background:var(--WONBIN)}
+.chip.SOHEE.active{background:var(--SOHEE)}
+.chip.ANTON.active{background:var(--ANTON);color:#1A1714}
+.chip.DAY1.active{background:var(--DAY1)}
+.chip.DAY2.active{background:var(--DAY2)}
+.chip.DAY3.active{background:var(--DAY3)}
+.chip.DAY4.active{background:var(--DAY4)}
+.chip.DAY5.active{background:var(--DAY5)}
+.section-parent-header{padding:18px 12px 4px;font-size:12px;font-family:'Noto Serif JP',serif;font-weight:700;letter-spacing:.06em;color:var(--text);border-top:2px solid var(--text);margin-top:8px;background:var(--bg)}
+.section-parent-header:first-child{border-top:none;margin-top:0;padding-top:10px}
+.section-header{padding:10px 12px 5px;display:flex;align-items:center;gap:6px;border-top:1px solid var(--border);margin-top:2px}
+.region-zh{font-size:13px;font-weight:700;font-family:'Noto Serif JP',serif;color:var(--text)}
+.region-jp{font-size:9px;color:var(--sub);font-family:'DM Mono',monospace;letter-spacing:.06em}
+.region-cnt{margin-left:auto;font-size:9px;color:var(--sub);font-family:'DM Mono',monospace;background:#F0EDE8;padding:1px 7px;border-radius:8px}
+main{padding:8px 12px 100px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .12s,box-shadow .15s}
+.card:active{transform:scale(.97);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.card-img{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#EEE8DF}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card:hover .card-img img{transform:scale(1.06)}
+.day-badge{position:absolute;top:7px;left:7px;font-size:8px;font-weight:600;padding:2px 7px;border-radius:8px;color:#fff;letter-spacing:.06em;background:rgba(0,0,0,.5);font-family:'DM Mono',monospace}
+.member-strip{position:absolute;bottom:0;left:0;right:0;display:flex;height:3px}
+.member-seg{flex:1}
+.card-body{padding:8px 9px 10px}
+.card-name{font-family:'Noto Serif JP',serif;font-size:11px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;display:block;width:100%}
+.card-type{font-size:9px;color:var(--sub);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'DM Mono',monospace;letter-spacing:.04em}
+.card-members{display:flex;gap:3px;flex-wrap:wrap;align-items:center}
+.member-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.empty{text-align:center;padding:60px 20px;color:var(--sub);font-size:12px;grid-column:span 2;font-family:'DM Mono',monospace}
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:flex-end}
+.overlay.open{display:flex}
+.sheet{background:#fff;border-radius:22px 22px 0 0;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:slideUp .28s cubic-bezier(.32,1.02,.56,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 6px}
+.sheet-imgs-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.sheet-imgs-wrap::-webkit-scrollbar{height:2px}
+.sheet-imgs-wrap::-webkit-scrollbar-thumb{background:var(--border)}
+.img-track{display:flex;gap:0}
+.img-track img{flex-shrink:0;width:100vw;max-width:100%;height:340px;object-fit:cover;object-position:center top;scroll-snap-align:start}
+.img-dots{display:flex;justify-content:center;gap:4px;padding:7px 0 2px}
+.img-dot{width:5px;height:5px;border-radius:50%;background:var(--border);transition:background .2s}
+.img-dot.active{background:var(--text)}
+.sheet-body{padding:15px 16px 40px}
+.sheet-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.stag{font-size:9px;font-weight:700;padding:3px 9px;border-radius:10px;letter-spacing:.05em;font-family:'DM Mono',monospace;display:inline-flex;align-items:center;justify-content:center}
+.sheet-name{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:700;margin-bottom:3px;line-height:1.35}
+.sheet-name-sub{font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.02em}
+.sheet-addr{font-size:11px;color:var(--sub);margin-bottom:12px;line-height:1.6;font-family:'DM Mono',monospace}
+.divider{border:none;border-top:1px solid var(--border);margin:11px 0}
+.source-line{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub)}
+.source-line a{color:#1A1714;text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.map-open-btn{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:12px;padding:14px;border-radius:12px;background:#1A1714;border:none;font-size:13px;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.06em}
+.official-btn{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:6px;padding:10px;border-radius:10px;background:#1A1714;font-size:11px;font-weight:600;color:#fff;text-decoration:none;letter-spacing:.04em}
+.close-btn{position:absolute;top:10px;right:12px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.3);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
+.sheet-top{position:relative}
+/* REGION */
+.region-index{padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.region-index::-webkit-scrollbar{display:none}
+.region-index-inner{display:flex;gap:5px;padding:10px 12px;flex-wrap:nowrap;min-width:max-content}
+.region-btn{flex-shrink:0;font-size:10px;font-weight:600;padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--sub);cursor:pointer;transition:all .15s;font-family:'DM Mono',monospace;letter-spacing:.04em}
+.region-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
+.region-btn.region-parent-btn{font-weight:700;background:#F0EDE8!important;color:var(--text)!important;border-color:#D9D4CC!important}
+.region-group{scroll-margin-top:200px}
+/* No image placeholder */
+.no-img{width:100%;height:100%;background:#EEE8DF;display:flex;align-items:center;justify-content:center;font-size:28px;color:#AAA}
+footer{background:#1A1714;color:rgba(255,255,255,.5);padding:18px 14px 24px;font-size:8px;line-height:1.6;font-family:'DM Mono',monospace;letter-spacing:.02em}
+footer .footer-logo{font-family:'Noto Serif JP',serif;color:rgba(255,255,255,.85);font-size:11px;font-weight:700;margin-bottom:10px}
+footer .footer-divider{border:none;border-top:1px solid rgba(255,255,255,.1);margin:8px 0}
+footer p{margin-bottom:3px}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-top">
-    <div class="logo">RIIZE <span>《II》</span> 聖地巡禮</div>
-    <span class="count" id="count"></span>
+  <div class="header-inner">
+    <div>
+      <div class="logo">RIIZE【II】聖地巡禮</div>
+      <div class="logo-sub">Location Archive &amp; Filming Guide</div>
+    </div>
+    <span class="spot-count" id="spot-count"></span>
   </div>
-  <div class="tab-bar">
+  <div class="tab-row">
     <div class="tab active" onclick="switchTab('member')">依成員</div>
     <div class="tab" onclick="switchTab('day')">依 DAY</div>
+    <div class="tab" onclick="switchTab('region')">依地區</div>
   </div>
-  <div style="margin-top:10px">
-    <div class="filter-wrap" id="filter-wrap"></div>
+  <div class="filter-wrap" id="filter-wrap">
+    <div class="filter-row" id="filter-row"></div>
   </div>
 </header>
 
-<main>
+<div id="region-index-wrap" style="display:none;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:99">
+  <div class="region-index"><div class="region-index-inner" id="region-index-btns"></div></div>
+</div>
+
+<main id="main-area">
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none">沒有符合的景點</div>
 </main>
 
-<div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <div class="modal-top">
-      <div class="drag-handle"></div>
-      <button class="modal-close" onclick="closeModalBtn()">✕</button>
-      <div class="modal-imgs"><div class="modal-img-track" id="modal-imgs"></div></div>
+<footer>
+  <div class="footer-logo">RIIZE【II】聖地巡禮 · Location Archive &amp; Filming Guide</div>
+  <p style="margin-bottom:8px;font-size:9px;color:rgba(255,255,255,.55)">Created, Curated &amp; Maintained by @smiiiiiiiee</p>
+  <div class="footer-divider"></div>
+  <p>【網站聲明】本網站為非官方粉絲網站，僅以非營利目的彙整 RIIZE【II】相關拍攝地點及公開資訊。網站內嵌之照片、影片及相關內容，其權利均屬各原權利人所有。如有內容需修正或移除，請透過 Instagram 聯繫網站管理者。</p>
+  <div class="footer-divider"></div>
+  <p>UNOFFICIAL FAN SITE · Not affiliated with RIIZE or SM Entertainment. All embedded media remain the property of their respective owners.</p>
+  <div class="footer-divider"></div>
+  <p>SOURCES · Media: RIIZE Official Website · X (Twitter) @riize_official · YouTube · Instagram · Maps: Google Maps</p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeSheet(event)">
+  <div class="sheet" id="sheet">
+    <div class="sheet-top">
+      <button class="close-btn" onclick="closeSheetBtn()">✕</button>
+      <div class="sheet-handle"></div>
+      <div class="sheet-imgs-wrap" id="sheet-imgs-wrap">
+        <div class="img-track" id="sheet-imgs"></div>
+      </div>
+      <div class="img-dots" id="img-dots"></div>
     </div>
-    <div class="modal-body">
-      <div class="modal-tags" id="modal-tags"></div>
-      <div class="modal-name" id="modal-name"></div>
-      <div class="modal-addr" id="modal-addr"></div>
-      <hr class="modal-divider">
-      <div class="modal-source" id="modal-source"></div>
-      <div class="modal-map" id="modal-map"></div>
+    <div class="sheet-body">
+      <div class="sheet-tags" id="sheet-tags"></div>
+      <div class="sheet-name" id="sheet-name"></div>
+      <div class="sheet-name-sub" id="sheet-name-sub"></div>
+      <div class="sheet-addr" id="sheet-addr"></div>
+      <div class="divider"></div>
+      <div class="source-line" id="sheet-source"></div>
+      <div id="sheet-map-wrap"></div>
     </div>
   </div>
 </div>
 
 <script>
-const spots = [
-  {
-    id: 1,
-    name: "あけび屋珈琲",
-    addr: "神奈川県足柄下郡真鶴町岩242-1",
-    member: "EUNSEOK",
-    day: "DAY 2",
-    type: "Coffee Shop",
-    mapsUrl: "https://maps.app.goo.gl/rXcWfcSs2qcBYo586",
-    mapsEmbed: "https://maps.google.com/maps?q=Akebiya+Coffee+Manazuru&output=embed&z=15",
-    sourceName: "RIIZE llog",
-    sourceUrl: "https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/48dae6da-db1d-48bb-af22-a7175e156a56",
-    imgs: [
-      "https://druv7mpvk8qsc.cloudfront.net/media/jhx5x3y2/jhx5x3y2-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/98una5dd/98una5dd-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/69gdmmms/69gdmmms-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/75kjrf75/75kjrf75-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/xzxxsr6d/xzxxsr6d-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/bmvb5kd6/bmvb5kd6-image-2200.jpg",
-      "https://druv7mpvk8qsc.cloudfront.net/media/9jhr4967/9jhr4967-image-2200.jpg",
-    ]
+const CDN = 'https://druv7mpvk8qsc.cloudfront.net/media/';
+const I = (id) => CDN + id + '/' + id + '-image-2200.jpg';
+
+const MC = {
+  SHOTARO:'#F472B6',EUNSEOK:'#FBBF24',SUNGCHAN:'#A78BFA',
+  WONBIN:'#F87171',SOHEE:'#38BDF8',ANTON:'#4ADE80'
+};
+const DC = {
+  'DAY 1':'#1E3A5F','DAY 2':'#14532D','DAY 3':'#7C2D12',
+  'DAY 4':'#831843','DAY 5':'#312E81'
+};
+const MEMBER_EMOJI = {
+  SHOTARO:'🦦',EUNSEOK:'🪨',SUNGCHAN:'🦌',WONBIN:'🎸',SOHEE:'💂',ANTON:'🦕'
+};
+
+// ── MEMBER-SPECIFIC IMAGE LOOKUP ──────────────────────────────────
+const MIMGS = {
+  // ── DAY 1 ──────────────────────────────────────────────────────
+  // SPOT 1: Hotel A (WONBIN) 表單K:001-022 共26張，頁面顯示前12
+  1:{
+    WONBIN:[I('dw4hwk57'),I('x6fbyang'),I('wjm49t3k'),I('38qzx85e'),I('pkn937d4'),
+            I('68thuabw'),I('3a326ejt'),I('vy6w992j'),I('yp7py7ey'),I('9ub7ees7'),
+            I('8st8crbr'),I('acgak4da')]
+  },
+  // SPOT 2: Jazz Cafe 表單K:007/010/011/012/013/014/015/021/001/002/003/004/016/017
+  2:{
+    SHOTARO:[I('krbeksdg'),I('mjrm7crz'),I('snuxwp55'),I('ef64rq75')],
+    EUNSEOK:[I('rg4whx8z'),I('mwg7wkc4'),I('x29ytuc4')],
+    SUNGCHAN:[I('4b33mzh3'),I('rf79yqkn'),I('bztxrdk8'),I('43wtnbwa')],
+    ANTON:[I('fbm4ff8v'),I('mjrm7crz'),I('mvq2n9b9'),I('nk3et4rp')]
+  },
+  // SPOT 3: Monorail SOHEE 表單K:007/008/010/009
+  // 001=aan8a5qy,002=video,003=video,004=h5surzzx,005=p2pbxmpy,006=c2e95p34
+  // 007=kd9mqadt,008=6vs7m6ed,009=w7b987fx,010=tvge6ve6
+  3:{
+    SOHEE:[I('kd9mqadt'),I('6vs7m6ed'),I('tvge6ve6'),I('w7b987fx')]
+  },
+  // SPOT 4: Skateboard Shop 表單K:全部
+  4:{
+    SHOTARO:[I('v8j2u78x'),I('g349fg9r'),I('mufzvgtb'),I('jfv4pghy')],
+    EUNSEOK:[I('e98fk8kt')],
+    SUNGCHAN:[I('fathujxg'),I('upr6b3zr')],
+    ANTON:[I('8xsa35cu'),I('x38qa87y'),I('e94nckhs'),I('gnvw4ssx')]
+  },
+  // SPOT 5: Vintage Shop B 表單K:001/002/003/007/004/005
+  5:{
+    SHOTARO:[I('nsuarsj8'),I('szf8t3gg'),I('66v3eckh'),I('9drjhxty')],
+    SUNGCHAN:[I('nsuarsj8'),I('szf8t3gg'),I('x27syqfy')],
+    ANTON:[I('nsuarsj8'),I('66v3eckh'),I('j562fq6r')]
+  },
+  // SPOT 502: 日本動物専門学校 表單K:006/004/005
+  502:{
+    SHOTARO:[I('szf8t3gg'),I('9drjhxty')],
+    SUNGCHAN:[I('x27syqfy')],
+    ANTON:[I('j562fq6r')]
+  },
+  // SPOT 6: Vintage Shop A 表單K:全部
+  6:{
+    SHOTARO:[I('26eepds9'),I('pjby35wc'),I('fxcm5gf8'),I('f6cdhygq'),I('mqbf7tpt'),I('4k6569kt')],
+    EUNSEOK:[I('fxcm5gf8'),I('41frdwta')],
+    SUNGCHAN:[I('fxcm5gf8'),I('jvq9hrt3'),I('s9s4zhhs')],
+    ANTON:[I('26eepds9'),I('pjby35wc'),I('fxcm5gf8'),I('hfjh2k93')]
+  },
+  // SPOT 7: Dango Stand 表單K:002/003/005/006/007/010/011/012/001/004
+  // SHOTARO 001=5yydk8ws,002=ahvanu5h,003=7729qx4n,004=3ytcnz8f,005=acxfp6kc,
+  //          006=f4zmqcqw,007=8ag2k3w8,008=gu82h3bt,009=gsf5yr39,010=z54v8n4j
+  7:{
+    SHOTARO:[I('5yydk8ws'),I('ahvanu5h'),I('7729qx4n'),I('3ytcnz8f'),I('acxfp6kc'),
+             I('f4zmqcqw'),I('8ag2k3w8'),I('gu82h3bt'),I('gsf5yr39'),I('z54v8n4j'),
+             I('ze3kk6ew'),I('wurs3jbj')],
+    EUNSEOK:[I('gsf5yr39'),I('gu82h3bt'),I('8ag2k3w8'),I('ze3kk6ew'),I('acxfp6kc'),
+             I('f4zmqcqw'),I('wurs3jbj')],
+    SUNGCHAN:[I('gsf5yr39'),I('8ag2k3w8'),I('r4br9nnb'),I('acxfp6kc'),I('f4zmqcqw')],
+    ANTON:[I('gsf5yr39'),I('gu82h3bt'),I('8ag2k3w8'),I('acxfp6kc'),I('f4zmqcqw')]
+  },
+  // SPOT 71: 鳥一番 表單K:008/009/017
+  71:{
+    SHOTARO:[I('acxfp6kc'),I('f4zmqcqw')],
+    EUNSEOK:[I('acxfp6kc'),I('f4zmqcqw')],
+    SUNGCHAN:[I('acxfp6kc'),I('f4zmqcqw')],
+    ANTON:[I('acxfp6kc'),I('f4zmqcqw')]
+  },
+  // SPOT 8: 潮風公園南 SOHEE 表單K:001/002/003/004/005/006
+  8:{
+    SOHEE:[I('aan8a5qy'),I('h5surzzx'),I('p2pbxmpy'),I('c2e95p34')]
+  },
+  // SPOT 10: 神奈川工科大学 SOHEE 表單K:全部
+  10:{
+    SOHEE:[I('c37emegt'),I('jhy7rnn4'),I('r4ktbyge')]
+  },
+  // ── DAY 2 ──────────────────────────────────────────────────────
+  // SPOT 20: Downtown 表單K:全部
+  20:{
+    SHOTARO:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')],
+    EUNSEOK:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')],
+    SUNGCHAN:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')],
+    WONBIN:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')],
+    SOHEE:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')],
+    ANTON:[I('5nujjnaf'),I('8hfh4yzv'),I('dkj783e2'),I('25xwk7s2'),I('3uyyvcqt'),I('22sjtsw7')]
+  },
+  // SPOT 21: Dance Studio 表單K:全部
+  21:{
+    SHOTARO:[I('457fwspg'),I('cxmb2rqe'),I('nwk66skt'),I('s7w57hzf'),I('ewj4na46'),
+             I('5jmvh3ak'),I('kmx4ustj'),I('43r63aev')],
+    WONBIN:[I('457fwspg'),I('cxmb2rqe'),I('nwk66skt'),I('s7w57hzf')],
+    SOHEE:[I('457fwspg'),I('cxmb2rqe'),I('nwk66skt'),I('s7w57hzf')]
+  },
+  // SPOT 22: あけび屋珈琲 EUNSEOK 表單K:全部
+  22:{
+    EUNSEOK:[I('jhx5x3y2'),I('98una5dd'),I('69gdmmms'),I('75kjrf75'),I('xzxxsr6d'),I('bmvb5kd6')]
+  },
+  // SPOT 23: SeeSea Burger EUNSEOK 表單K:全部 ⚠️ Twitter圖
+  23:{
+    EUNSEOK:[]
+  },
+  // SPOT 24: 岩海水浴場 EUNSEOK 表單K:全部
+  24:{
+    EUNSEOK:[I('wm9hwu5w'),I('u7hjz68a'),I('e952zjam'),I('attd957c'),I('7rakjh8e')]
+  },
+  // SPOT 25: Park A SUNGCHAN 表單K:（截圖確認）
+  25:{
+    SUNGCHAN:[I('dxcj3z4k'),I('nnk3upuj'),I('7gwzczv3'),I('bhrmav7w'),I('h6tf8aqc'),
+              I('de5kcxfz'),I('pd8beeby'),I('h5zu32hf'),I('ch9nqr3h'),I('fpe5gwyh'),
+              I('ymqu2jhc'),I('yvyn7ren')]
+  },
+  // SPOT 26: Bakery SUNGCHAN
+  26:{
+    SUNGCHAN:[I('3fs4k7k9'),I('qu3gm3r2'),I('qufcp9q3'),I('jz7hqhh3'),I('5yzkhqsk'),
+              I('772jemu5'),I('sjfa6vqq'),I('2fkh4bj5'),I('6juzfpbc'),I('4mpn95fm')]
+  },
+  // SPOT 27: Ehukai Beach SUNGCHAN
+  27:{
+    SUNGCHAN:[I('gehs95gr'),I('qam4d5k5'),I('fny8gnvd'),I('bdu5e87a'),I('yt7yvdhy')]
+  },
+  // ── DAY 3 ──────────────────────────────────────────────────────
+  // SPOT 30: SKAC 表單K:全部
+  30:{
+    EUNSEOK:[I('tud4bw5t'),I('c9dz6jez'),I('kfuewudk'),I('ag7j85pv'),I('539cx6zp'),I('a62q9scc'),I('h8db6hxz'),I('zp33fzpe'),I('db3a3arj'),I('3rp5v7uv')]
+  },
+  // SPOT 31: Rainbow Bridge 表單K:全部
+  31:{
+    EUNSEOK:[I('tr625mkt'),I('wu6b5tux'),I('jjyccdjk'),I('bemuz26z'),I('ued56x9y'),
+             I('cupbctxv'),I('6k8zufru'),I('zws2xjbe')],
+    WONBIN:[I('pcps2ehp'),I('jjyccdjk'),I('bemuz26z'),I('xhz8r3g8'),I('8hasn8ve'),
+            I('gkjj3bq5'),I('985bqtmr'),I('k4d2znfc')],
+    SOHEE:[I('jjyccdjk'),I('bemuz26z'),I('k4d2znfc')],
+    ANTON:[I('jjyccdjk'),I('bemuz26z'),I('xhz8r3g8'),I('8hasn8ve')]
+  },
+  // SPOT 32: Jazzy Sport 表單K:全部
+  32:{
+    EUNSEOK:[I('p7d8j8yb'),I('cdudc5pk'),I('sexvkz82'),I('krfwg65e'),I('nn3er9bx'),I('pnuky8wa'),I('6hf2f8bk'),I('snu8p8ed'),I('kp9uyauz'),I('24pepe2d'),I('p29e6udn'),I('a6t7e7cq')]
+  },
+  // SPOT 33: IKEBE 表單K:全部
+  33:{
+    EUNSEOK:[I('wveatq95'),I('z6c9wdpr'),I('zrcfyjxt'),I('hazjfq3b'),I('8qxyhay4'),I('j4j7y5am'),I('4dqzc9xq'),I('m3ctw6et'),null,null,null]
+  },
+  // SPOT 34: うどん五葵 表單K:全部
+  34:{
+    EUNSEOK:[I('7cedeshy'),I('kk8v7bdy'),I('5x95tqtg'),I('8m3x8jjz'),I('5qh7nncr'),
+             I('6j5whsg3'),I('pu23at9d')],
+    WONBIN:[I('7cedeshy'),I('8m3x8jjz'),I('5qh7nncr')],
+    SOHEE:[I('7cedeshy'),I('8m3x8jjz')],
+    ANTON:[I('8m3x8jjz'),I('5qh7nncr')]
+  },
+  // SPOT 35: Park D 表單K:全部
+  35:{
+    WONBIN:[I('vekqpkg3'),I('2kbm77ka'),I('cw57qy78'),I('nesauhvs'),I('7ghxu64c'),I('nn7ffr8r')],
+    SOHEE:[I('vekqpkg3'),I('2kbm77ka')],
+    ANTON:[I('vekqpkg3'),I('2kbm77ka'),I('cw57qy78')]
+  },
+  // SPOT 36: 霊友会 SHOTARO 表單K:全部
+  36:{
+    SHOTARO:[I('eharwr6x'),I('ttuusyft'),I('ynererym'),I('9zmxsvmn'),I('mzbdcgbh'),
+             I('myc2vdwk'),I('gqfdaxy9'),I('c34sgqpk'),I('v6m6ge43'),I('7kvfkpg7'),
+             I('t8kskhj5'),I('vmkv3wyb')]
+  },
+  // SPOT 37-374: 下北沢 SHOTARO
+  37:{
+    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+  },
+  371:{
+    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+  },
+  372:{
+    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+  },
+  373:{
+    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+  },
+  374:{
+    SHOTARO:[I('aew6gtqt'),I('42hqsds2'),I('axgjwqu3'),I('mdz32wa8'),I('948vb3kk'),I('5ap9wq56'),I('h5p6yw8n'),I('ycaphzmn'),I('2kfunz7g'),I('33enmxjd'),I('s65vfbxs'),I('bbkg2kkk')]
+  },
+  // ── DAY 4 ──────────────────────────────────────────────────────
+  // SPOT 40: Station 表單K:全部
+  40:{
+    SHOTARO:[I('2e29wrk2'),I('up3vcdyz'),I('gyu93fam')],
+    EUNSEOK:[I('up3vcdyz'),I('d5sqbju4'),I('2e29wrk2'),I('hhpp8au3'),I('rk88sz6t'),
+             I('esq9pxxm'),I('te6k7enh')],
+    SUNGCHAN:[I('2e29wrk2'),I('up3vcdyz')],
+    SOHEE:[I('rk88sz6t'),I('te6k7enh'),I('q5gn6kab')]
+  },
+  // SPOT 41: Waterfront 表單K:全部
+  41:{
+    SHOTARO:[I('uwnf4et8'),I('5de3d4cd'),I('m9jdzzm3'),I('b2v8vtgy'),I('hnrd3m4w'),I('wmb5gtt8'),I('7734uhch'),I('byuyk32p'),I('vn9qh6a9'),I('k8mw3urr'),I('22z6kzrs'),I('yxu6d8mt')]
+  },
+  // SPOT 43: Coastal Bridge 表單K:全部
+  43:{
+    SHOTARO:[I('vzrxbaej'),I('fbj7tpvp'),I('rxxn4djp'),I('yrggzz7h'),I('6md95r5b')],
+    EUNSEOK:[I('vzrxbaej'),I('fbj7tpvp'),I('rxxn4djp'),I('yrggzz7h'),I('6md95r5b')],
+    SUNGCHAN:[I('vzrxbaej'),I('fbj7tpvp'),I('rxxn4djp'),I('yrggzz7h'),I('6md95r5b')],
+    SOHEE:[I('vzrxbaej'),I('fbj7tpvp'),I('rxxn4djp'),I('yrggzz7h'),I('6md95r5b')]
+  },
+  // SPOT 44: Beach B 表單K:全部
+  44:{
+    SHOTARO:[I('gkdebbv7'),I('fv4zp7m8'),I('cge8gx2p'),I('dbjaqtsw'),I('qd6hp7pr'),I('t43ahc8s'),I('yhe8a2jf'),I('y8pft5ra'),I('f8yxrmdt'),I('ftdcq9mg'),I('2wzvang5'),I('zwnzsw3n')]
+  },
+  // SPOT 42: Neighborhood 街並み
+  42:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),
+             I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt')],
+    EUNSEOK:[I('dkgkzkk9'),I('zgjk8xhk'),I('mhfj9ty6'),I('pe3v4g8d'),I('f2gd43s3'),
+             I('344fes9p'),I('xmtjhwzt')],
+    SUNGCHAN:[I('86vhpczf'),I('mhfj9ty6'),I('gb4ym2dn'),I('e34r7353'),I('d2fxdtqx'),
+              I('fwygyxru'),I('s933b97s')],
+    SOHEE:[I('mhfj9ty6'),I('tadymv9b'),I('d2fxdtqx'),I('f2gd43s3'),I('344fes9p'),
+           I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  // SPOT 55: CABA COFFEE BEANS
+  55:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),
+             I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt')],
+    EUNSEOK:[I('dkgkzkk9'),I('zgjk8xhk'),I('mhfj9ty6'),I('pe3v4g8d'),I('f2gd43s3'),
+             I('344fes9p'),I('xmtjhwzt')],
+    SUNGCHAN:[I('86vhpczf'),I('mhfj9ty6'),I('gb4ym2dn'),I('e34r7353'),I('d2fxdtqx'),
+              I('fwygyxru'),I('s933b97s')],
+    SOHEE:[I('mhfj9ty6'),I('tadymv9b'),I('d2fxdtqx'),I('f2gd43s3'),I('344fes9p'),
+           I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  // SPOT 57: pulu pulu pulpo!
+  57:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),
+             I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt')],
+    EUNSEOK:[I('dkgkzkk9'),I('zgjk8xhk'),I('mhfj9ty6'),I('pe3v4g8d'),I('f2gd43s3'),
+             I('344fes9p'),I('xmtjhwzt')],
+    SUNGCHAN:[I('86vhpczf'),I('mhfj9ty6'),I('gb4ym2dn'),I('e34r7353'),I('d2fxdtqx'),
+              I('fwygyxru'),I('s933b97s')],
+    SOHEE:[I('mhfj9ty6'),I('tadymv9b'),I('d2fxdtqx'),I('f2gd43s3'),I('344fes9p'),
+           I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  // SPOT 561-564: 三崎 Neighborhood sub-spots
+  561:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt'),I('dkgkzkk9'),I('zgjk8xhk'),I('pe3v4g8d'),I('f2gd43s3'),I('344fes9p'),I('xmtjhwzt'),I('86vhpczf'),I('e34r7353'),I('s933b97s'),I('tadymv9b'),I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  562:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt'),I('dkgkzkk9'),I('zgjk8xhk'),I('pe3v4g8d'),I('f2gd43s3'),I('344fes9p'),I('xmtjhwzt'),I('86vhpczf'),I('e34r7353'),I('s933b97s'),I('tadymv9b'),I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  563:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt'),I('dkgkzkk9'),I('zgjk8xhk'),I('pe3v4g8d'),I('f2gd43s3'),I('344fes9p'),I('xmtjhwzt'),I('86vhpczf'),I('e34r7353'),I('s933b97s'),I('tadymv9b'),I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  564:{
+    SHOTARO:[I('mhfj9ty6'),I('gb4ym2dn'),I('6stq65d3'),I('d2fxdtqx'),I('hazk2wkk'),I('fwygyxru'),I('r4nqd7n2'),I('hydvyemt'),I('dkgkzkk9'),I('zgjk8xhk'),I('pe3v4g8d'),I('f2gd43s3'),I('344fes9p'),I('xmtjhwzt'),I('86vhpczf'),I('e34r7353'),I('s933b97s'),I('tadymv9b'),I('8fdxt7bm'),I('rhag7hqj')]
+  },
+  // SPOT 48: KAIT WONBIN 表單K:全部
+  48:{
+    WONBIN:[I('phby36by'),I('ffm5y272')]
+  },
+  // SPOT 50: 下北沢油組 SOHEE 表單K:全部
+  50:{ SOHEE:[I('v5dwuy3j'),I('ac87avx3'),I('6gpcjncd')] },
+  // SPOT 51: Daisy Bar SOHEE 表單K:全部
+  51:{
+    SOHEE:[I('frznp29k'),I('srhhuea3'),I('tf6xbw4b'),I('fv75fhyy'),I('vk2x3efz'),
+           I('8du24t9z'),I('9pujbrqc'),I('5cvywys2'),I('uvhua4qq')]
+  },
+  // SPOT 52: 屏風ヶ浦 ANTON 表單K:全部
+  52:{
+    ANTON:[I('8wjsq3yf'),I('eq556xd2'),I('j9wvktj3'),I('5pnmubeg'),I('r5pw6qds'),I('h8ppjvhv'),
+           I('updks7r6'),I('fz23ycma'),I('hc93s8dz'),I('rk5a5jaz'),I('tbs57dmd'),
+           I('4vwr4my5'),I('vqh9e268')]
+  },
+  // ── DAY 5 ──────────────────────────────────────────────────────
+  // SPOT 60: teamLab 表單K:全部
+  60:{
+    SHOTARO:[I('nmswguqn'),I('vtkmum5p'),I('3866ut3n'),I('nve5q2w2'),I('f8nzjjgd'),
+             I('73gues5u'),I('hxa8m3kq')],
+    EUNSEOK:[I('vtkmum5p'),I('3866ut3n'),I('vh3jt7zy'),I('wfcjcgqt'),I('hxa8m3kq'),
+             I('2ppph7f9'),I('zsyh35sk')],
+    SUNGCHAN:[I('vtkmum5p'),I('3866ut3n'),I('nve5q2w2'),I('hxa8m3kq'),I('2ppph7f9')],
+    WONBIN:[I('nmswguqn'),I('vtkmum5p'),I('3866ut3n'),I('hxa8m3kq')],
+    SOHEE:[I('nmswguqn'),I('vtkmum5p'),I('3866ut3n'),I('f8nzjjgd'),I('2ppph7f9')],
+    ANTON:[I('vtkmum5p'),I('3866ut3n'),I('hxa8m3kq'),I('2ppph7f9'),I('zsyh35sk')]
+  },
+  // SPOT 61: NORMAN HOUSE 表單K:全部
+  61:{
+    SHOTARO:[I('c753e58w'),I('6huspv8c'),I('5y6f8kqs'),I('s4c96v7s'),I('wzv7zaxb'),I('xrngernh'),I('upbyh2jd'),I('qdvsnpx9'),I('w9g9mx65'),I('hpxq75xh'),I('b2pdpqda'),I('y83aefuw')]
+  },
+  // SPOT 62: namco 表單K:全部 (62=namco, 621=kotobukiya 共用同一 stop)
+  62:{
+    EUNSEOK:[I('txsmsgny'),I('2xpbvekp'),I('qq5bxvzs'),I('h8qkwzur'),I('vm4n4gje'),
+             I('zygyrm4j'),I('qtbm6hfu'),I('p6t8w4we'),I('33apkyg5'),I('nxkyshgg')]
+  },
+  // SPOT 621: KOTOBUKIYA 表單K:全部 封面020
+  621:{
+    EUNSEOK:[I('txsmsgny'),I('2xpbvekp'),I('qq5bxvzs'),I('h8qkwzur'),I('vm4n4gje'),
+             I('zygyrm4j'),I('qtbm6hfu'),I('p6t8w4we'),I('33apkyg5'),I('nxkyshgg')]
+  },
+  // SPOT 63: ふきや旅館 SUNGCHAN 表單K:全部
+  63:{
+    SUNGCHAN:[I('624u3jpf'),I('jcgja99w'),I('s32jxnbu'),I('gwcg5h99'),I('4277e25a'),
+              I('kax28wtu'),I('xb75p9c9')]
+  },
+  // SPOT 64: Sedai Coffee ANTON 表單K:全部
+  64:{
+    ANTON:[I('s4dw3jq8'),I('kkhrqhtg'),I('t6jaepe3'),I('ypqqr385'),I('7aennssn'),
+           I('p5yzaprc'),I('ekpan69t'),I('r7xxsbz8'),I('pnb7t5xu')]
+  },
+  // SPOT 65: LUG Hatagaya ANTON 表單K:全部
+  65:{
+    ANTON:[I('2s33gemk'),I('4r2z49mc'),I('q48wqbex'),I('g9j8dspb'),I('jygyjdyx'),
+           I('mw7a9g8d'),I('vtk28d84'),I('ckjawwr7'),I('kxwj659q'),I('t3n388af')]
   }
+};
+
+
+// ── COVER INDEX: spotId -> (member or 'all') -> 0-based index of cover image ──
+const DATA_IMGS = {
+  14: ['imgs/trailer_sohee_t1.jpg'],
+  23: ['imgs/seesea_01.jpg'],
+  58: ['imgs/busstop_01.jpg','imgs/busstop_02.jpg','imgs/busstop_03.jpg'],
+};
+
+// ── 官網 All 頁面照片順序（封面 index 對應此列表）──────────────────
+const ALLPAGE_IMGS = {
+  1: ['dw4hwk57','x6fbyang','wjm49t3k','38qzx85e','pkn937d4','68thuabw','3a326ejt','vy6w992j','yp7py7ey','9ub7ees7','8st8crbr','acgak4da'],
+  2: ['4b33mzh3','fbm4ff8v','krbeksdg','mjrm7crz','gktky5s3','mvq2n9b9','snuxwp55','6d8wq2u6','whyy5z9a','rf79yqkn','bztxrdk8','nk3et4rp'],
+  3: ['aan8a5qy',null,null,'h5surzzx','p2pbxmpy','c2e95p34','kd9mqadt','6vs7m6ed','w7b987fx','tvge6ve6',null],
+  4: ['v8j2u78x','8xsa35cu','x38qa87y','fathujxg','e98fk8kt','g349fg9r','mufzvgtb','e94nckhs','jfv4pghy','gnvw4ssx','upr6b3zr','8jtrtyub'],
+  5: ['nsuarsj8','szf8t3gg','66v3eckh','9drjhxty','x27syqfy','j562fq6r','hykm75tz'],
+  6: ['26eepds9','pjby35wc','fxcm5gf8','f6cdhygq','mqbf7tpt','jvq9hrt3','s9s4zhhs','hfjh2k93','4k6569kt','mwaufgyx','brbydsfk','41frdwta'],
+  7: ['r4br9nnb','5yydk8ws','ahvanu5h','fxhx5ya6','wurs3jbj','7729qx4n','3ytcnz8f','acxfp6kc','f4zmqcqw','8ag2k3w8','gu82h3bt','gsf5yr39'],
+  8: ['aan8a5qy',null,null,'h5surzzx','p2pbxmpy','c2e95p34'],
+  10: ['c37emegt','jhy7rnn4','r4ktbyge'],
+  20: ['5nujjnaf','8hfh4yzv','dkj783e2','25xwk7s2','3uyyvcqt','22sjtsw7'],
+  21: ['38b38gn6','3qfjsyn4','457fwspg','ututcd5r','cxmb2rqe','nwk66skt','dd9k7z7z','fh7h38w3','fprgxxha','hqvt7zyp','s7w57hzf','4yvekh63'],
+  22: [null,null,'jhx5x3y2','98una5dd','69gdmmms','75kjrf75','xzxxsr6d','bmvb5kd6','9jhr4967','2hwwpnys','bcd5tacr','ans7vm85'],
+  24: [null,'wm9hwu5w','u7hjz68a','e952zjam','attd957c','7rakjh8e'],
+  25: ['dxcj3z4k','nnk3upuj','7gwzczv3','bhrmav7w','h6tf8aqc','de5kcxfz','pd8beeby','h5zu32hf','ch9nqr3h','fpe5gwyh','ymqu2jhc','yvyn7ren'],
+  26: ['3fs4k7k9','qu3gm3r2','qufcp9q3','jz7hqhh3','5yzkhqsk','772jemu5','sjfa6vqq','2fkh4bj5','6juzfpbc','4mpn95fm'],
+  27: ['gehs95gr','qam4d5k5','fny8gnvd','bdu5e87a','yt7yvdhy'],
+  30: ['tud4bw5t','c9dz6jez','kfuewudk','ag7j85pv','539cx6zp','a62q9scc','h8db6hxz','zp33fzpe','db3a3arj','3rp5v7uv'],
+  31: ['wypqxm6n','tr625mkt','p5nqjaf4','pcps2ehp','wu6b5tux','jjyccdjk','bemuz26z','fzk9wxwc','ued56x9y','xhz8r3g8','8hasn8ve','cupbctxv'],
+  32: ['p7d8j8yb','cdudc5pk','sexvkz82','krfwg65e','nn3er9bx','pnuky8wa','6hf2f8bk','snu8p8ed','kp9uyauz','24pepe2d','p29e6udn','a6t7e7cq'],
+  33: ['wveatq95','z6c9wdpr','zrcfyjxt','hazjfq3b','8qxyhay4','j4j7y5am','4dqzc9xq','m3ctw6et',null,null,null],
+  34: [null,'6rf5m36t','7cedeshy','86jutgnr','kk8v7bdy','dcq4ksv4','ptbvd9ss','5x95tqtg','8m3x8jjz','5qh7nncr','ek7jpc35','6j5whsg3'],
+  35: [null,'v953rcvd','kygq4cqx','vekqpkg3','gj62sfnk','8f9pk8y2','nvtc5gy6','apj9g4bg','2kbm77ka','cw57qy78','3pububre','8c66qwng'],
+  36: ['eharwr6x','ttuusyft','ynererym','9zmxsvmn','mzbdcgbh','myc2vdwk','gqfdaxy9','c34sgqpk','v6m6ge43','7kvfkpg7','t8kskhj5','vmkv3wyb'],
+  37: ['aew6gtqt','42hqsds2','axgjwqu3','mdz32wa8','948vb3kk','5ap9wq56','h5p6yw8n','ycaphzmn','2kfunz7g','33enmxjd','s65vfbxs','bbkg2kkk'],
+  38: ['9zwz87as','55jvxrk3','e8zhpfhg','w3xnzfvz','gsmxwtha','pw69yyu7',null,'z59fe9z3','3gkuttna','uu93ytv6','typ35hc4','d4p7u69u'],
+  40: ['hf6khmhv','bnvyhq2p','9xuh998p','dcyxe8x3','g4scmd3x','up3vcdyz','psnunnup','ct9ztee6','d5sqbju4','2e29wrk2','bktjrwwy','gtzzjphd'],
+  41: ['uwnf4et8','5de3d4cd','m9jdzzm3','b2v8vtgy','hnrd3m4w','wmb5gtt8','7734uhch','byuyk32p','vn9qh6a9','k8mw3urr','22z6kzrs'],
+  42: ['7vf4sjzy','dkgkzkk9','86vhpczf','zgjk8xhk','mhfj9ty6','gb4ym2dn','6stq65d3','e34r7353','tadymv9b','d2fxdtqx','pe3v4g8d'],
+  43: ['vzrxbaej','fbj7tpvp',null,'xbjkbt7j','tbv72uf8','kh6rwjdk',null,'c4v4ghb4','2cxdayd7','rxxn4djp'],
+  44: ['gkdebbv7','fv4zp7m8','cge8gx2p','dbjaqtsw','qd6hp7pr','t43ahc8s','yhe8a2jf','y8pft5ra','f8yxrmdt','ftdcq9mg'],
+  45: ['h32rdjt9','zf4n5xfw','n84f8pcv','7ympfzxr','68ns4yg7','a6ufztpu','6qzdgcdv','2x9jwtgf','8xkgmgvx','wjkp3emf'],
+  46: ['ktv2nuq9','3fcebuke','njmfya29','tak7uggc','kgaafny5','5fzp3k6h','j566hxq9','vgmq28s9','wej4v47z'],
+  50: ['v5dwuy3j','ac87avx3','6gpcjncd',null],
+  51: ['frznp29k','srhhuea3','tf6xbw4b','fv75fhyy',null,'vk2x3efz',null,null,'8du24t9z','9pujbrqc','5cvywys2'],
+  52: ['eq556xd2','j9wvktj3','5pnmubeg','r5pw6qds','h8ppjvhv','updks7r6','fz23ycma','hc93s8dz','rk5a5jaz','tbs57dmd','4vwr4my5'],
+  53: ['h32rdjt9','zf4n5xfw','n84f8pcv','7ympfzxr','68ns4yg7','a6ufztpu','6qzdgcdv','2x9jwtgf','8xkgmgvx','wjkp3emf'],
+  54: ['h32rdjt9','zf4n5xfw','n84f8pcv','7ympfzxr','68ns4yg7','a6ufztpu','6qzdgcdv','2x9jwtgf','8xkgmgvx','wjkp3emf'],
+  55: ['7vf4sjzy','dkgkzkk9','86vhpczf','zgjk8xhk','mhfj9ty6','gb4ym2dn','6stq65d3','e34r7353','tadymv9b','d2fxdtqx','pe3v4g8d'],
+  57: ['7vf4sjzy','dkgkzkk9','86vhpczf','zgjk8xhk','mhfj9ty6','gb4ym2dn','6stq65d3','e34r7353','tadymv9b','d2fxdtqx','pe3v4g8d'],
+  60: ['xdsh6jqw','nmswguqn','vtkmum5p','3866ut3n','ub8wy43b','kfmzvrde','5udjnt7e','djgs2m3m','dhp7kgx6','nve5q2w2'],
+  61: ['c753e58w','6huspv8c','5y6f8kqs','s4c96v7s','wzv7zaxb','xrngernh','upbyh2jd','qdvsnpx9','w9g9mx65'],
+  62: ['txsmsgny','2xpbvekp','qq5bxvzs','h8qkwzur','vm4n4gje','zygyrm4j',null,'qtbm6hfu',null,'p6t8w4we','33apkyg5'],
+  63: ['624u3jpf','xb75p9c9','jcgja99w','s32jxnbu','gwcg5h99',null,'6c6pgfte','kax28wtu','4277e25a'],
+  64: ['s4dw3jq8','kkhrqhtg','t6jaepe3','ypqqr385','7aennssn','p5yzaprc','ekpan69t','r7xxsbz8','pnb7t5xu'],
+  65: ['2s33gemk','4r2z49mc','q48wqbex','g9j8dspb','jygyjdyx','mw7a9g8d','vtk28d84','ckjawwr7','kxwj659q',null,'t3n388af'],
+  502: ['nsuarsj8','szf8t3gg','66v3eckh','9drjhxty','x27syqfy','j562fq6r','hykm75tz'],
+  541: ['h32rdjt9','zf4n5xfw','n84f8pcv','7ympfzxr','68ns4yg7','a6ufztpu','6qzdgcdv','2x9jwtgf','8xkgmgvx','wjkp3emf'],
+  621: ['txsmsgny','2xpbvekp','qq5bxvzs','h8qkwzur','vm4n4gje','zygyrm4j',null,'qtbm6hfu',null,'p6t8w4we','33apkyg5'],
+};
+
+const COVER_OVERRIDE = {
+  621:'3rsvzbgr',
+  563:'rhag7hqj',
+  562:'dkgkzkk9',
+  561:'zgjk8xhk',
+  71:'f4zmqcqw',
+  374:'2aybdaft',
+  373:'frrjrtfy',
+  58:'imgs/busstop_01.jpg',
+  23:'imgs/seesea_01.jpg',
+  14:'imgs/trailer_sohee_t1.jpg',
+  564:'pe3v4g8d',
+  371:'33enmxjd',
+  372:'h5p6yw8n',
+  52:'8wjsq3yf',
+  55:'mhfj9ty6',
+  57:'fwygyxru',
+  65:'ckjawwr7',
+};
+const COVER_IDX = {
+  1:{all:0},
+  2:{all:14,SHOTARO:6,EUNSEOK:14,SUNGCHAN:10,ANTON:11},
+  3:{SOHEE:9},
+  4:{all:9,SHOTARO:0,EUNSEOK:4,SUNGCHAN:3,ANTON:9},
+  5:{all:1},
+  6:{all:11,SHOTARO:1,EUNSEOK:11,SUNGCHAN:5,ANTON:10},
+  7:{all:11,SHOTARO:15,EUNSEOK:14,SUNGCHAN:12,ANTON:13},
+  8:{SOHEE:3},
+  10:{SOHEE:1},
+  20:{all:1},
+  21:{all:2},
+  22:{all:2},
+  24:{all:3},
+  25:{SUNGCHAN:0},
+  26:{SUNGCHAN:1},
+  27:{SUNGCHAN:4},
+  30:{all:7,EUNSEOK:7,WONBIN:4,SOHEE:1,ANTON:9},
+  31:{all:6,EUNSEOK:11,WONBIN:16,SOHEE:2,ANTON:14},
+  32:{all:8,EUNSEOK:9,WONBIN:9,SOHEE:8,ANTON:7},
+  33:{all:3,EUNSEOK:0,WONBIN:1,SOHEE:5,ANTON:2},
+  34:{all:8,EUNSEOK:11,WONBIN:12,SOHEE:18,ANTON:2},
+  35:{all:8,WONBIN:12,SOHEE:18,ANTON:1},
+  36:{all:9},
+  37:{all:0},
+  38:{all:16},
+  40:{all:26,SHOTARO:11,EUNSEOK:5,SUNGCHAN:13,SOHEE:4},
+  41:{all:4},
+  42:{all:0},
+  43:{all:1},
+  44:{all:9},
+  45:{all:2},
+  46:{all:2},
+  48:{all:0},
+  50:{all:0},
+  51:{all:2},
+  52:{all:12},
+  53:{all:0},
+  54:{all:6},
+  55:{all:0},
+  57:{all:2},
+  60:{all:3},
+  61:{all:6},
+  62:{all:0},
+  63:{all:3},
+  64:{all:5},
+  65:{all:13},
+  71:{all:8},
+  502:{all:5},
+  541:{all:5},
+  621:{all:19},
+  14:{SOHEE:0}, 371:{SHOTARO:0}, 372:{SHOTARO:0}, 373:{SHOTARO:0}, 374:{SHOTARO:0},
+  561:{EUNSEOK:0}, 562:{EUNSEOK:0}, 563:{EUNSEOK:0}, 564:{EUNSEOK:0},
+  23:{EUNSEOK:0},
+};
+
+// Helper: get best cover image for a spot given current filter
+function getCoverImg(s, member) {
+  // 封面固定：不因篩選成員而改變
+  const ci = COVER_IDX[s.id] || {};
+  const local = DATA_IMGS[s.id] || [];
+  const apRaw = ALLPAGE_IMGS[s.id] || [];
+  const allPage = apRaw.map(id => id ? I(id) : null);
+  const allCdn = getAllImgs(s);
+
+  // 1) 直接指定的封面（CDN ID 或本機圖）
+  if (COVER_OVERRIDE[s.id]) {
+    const ov = COVER_OVERRIDE[s.id];
+    return ov.startsWith('imgs/') ? ov : I(ov);
+  }
+  // 2) ci.all
+  if (ci.all !== undefined) {
+    if (allPage[ci.all]) return allPage[ci.all];
+    if (local[ci.all]) return local[ci.all];
+  }
+  // 3) 任一成員 index
+  for (const k in ci) {
+    if (k === 'all') continue;
+    const idx = ci[k];
+    if (allPage[idx]) return allPage[idx];
+    if (allCdn[idx]) return allCdn[idx];
+  }
+  // 4) fallback
+  for (const u of allPage) { if (u) return u; }
+  if (allCdn[0]) return allCdn[0];
+  if (local[0]) return local[0];
+  return '';
+}
+function getAllImgs(s) {
+  if (!MIMGS[s.id]) return [];
+  const all = [];
+  for (const m of s.members) { if (MIMGS[s.id][m]) all.push(...MIMGS[s.id][m]); }
+  return [...new Set(all)];
+}
+
+function getMemberImgs(s, member) {
+  const local = DATA_IMGS[s.id] || [];
+  const allCdn = getAllImgs(s);
+  // 一律顯示該景點所有成員的合併照片（不分成員）
+  return [...new Set([...allCdn, ...local])].slice(0,20);
+}
+
+// ── SPOTS DATA ────────────────────────────────────────────────────
+const spots = [
+/* ===== DAY 1 ===== */
+{
+  id:1, name:"ヒルトン東京お台場", nameZh:"東京御台場希爾頓酒店",
+  addr:"東京都港区台場1丁目9-1",
+  members:["WONBIN"], day:"DAY 1", type:"Hotel A", region:"東京・お台場",
+  mapsUrl:"https://maps.google.com/maps?q=ヒルトン東京お台場",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/45a545a9-bc49-4b86-b1da-5186fda8091c?member=wonbin",
+  sourceName:"RIIZE llog"
+},
+{
+  id:2, name:"ジャズ喫茶 映画館", nameZh:"Eigakan Jazz 爵士咖啡廳",
+  addr:"東京都文京区白山5丁目33-19",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","ANTON"], day:"DAY 1", type:"Jazz Cafe", region:"東京・文京区",
+  mapsUrl:"https://maps.app.goo.gl/5EfhJZRSa7fd3sfn9?g_st=ic",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/3b4ac1a1-3781-4d4d-bd4d-47fd24af168c",
+  sourceName:"RIIZE llog"
+},
+{
+  id:3, name:"東京国際クルーズターミナル駅前", nameZh:"東京國際郵輪客運站前（百合鷗線U08）",
+  addr:"東京都港区海岸3丁目",
+  members:["SOHEE"], day:"DAY 1", type:"Monorail", region:"東京・港区",
+  mapsUrl:"https://maps.app.goo.gl/VXCQYVvnuoStd9WQA",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/f1f42b03-6b2b-474f-82b0-da9fbfed1a57?member=sohee",
+  sourceName:"RIIZE llog"
+},
+{
+  id:4, name:"HIGHSOX SKATEBOARDS", nameZh:"滑板用品店",
+  addr:"東京都豊島区南池袋2丁目14-12 山口ビル2F",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","ANTON"], day:"DAY 1", type:"Skateboard Shop", region:"東京・池袋",
+  mapsUrl:"https://maps.app.goo.gl/rD3uNw9vhmZ4FJaR9?g_st=ic",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/33eb3f0d-4734-496e-865b-28f4869a4af6",
+  sourceName:"RIIZE llog"
+},
+{
+  id:5, name:"高円寺南四丁目 - 十字路口", nameZh:"高円寺南四丁目 十字路口",
+  addr:"東京都杉並区高円寺南4丁目（35°42'11.4″N 139°38'58.9″E）",
+  members:["SHOTARO","SUNGCHAN","ANTON"], day:"DAY 1", type:"Vintage Shop B", region:"東京・高円寺",
+  mapsUrl:"https://maps.app.goo.gl/Y96bgbmVMjE25qR78",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/a67642db-4faa-47e8-87ab-cf0246ebef00",
+  sourceName:"RIIZE llog"
+},
+{
+  id:6, name:"サントラップ", nameZh:"SUNTRAP 古着・雑貨店",
+  addr:"東京都杉並区高円寺南4丁目23-5 ACP#1F",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","ANTON"], day:"DAY 1", type:"Vintage Shop A", region:"東京・高円寺",
+  mapsUrl:"https://maps.app.goo.gl/ZQNeDDtNf6YKEfs3A",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/4d988a4f-4861-4b32-9f6c-fa532a649b69",
+  sourceName:"RIIZE llog"
+},
+{
+  id:502, name:"高円寺南四丁目 - 日本動物専門学校", nameZh:"日本動物専門学校 門口前",
+  addr:"東京都杉並区高円寺南4丁目6-8",
+  members:["SHOTARO","SUNGCHAN","ANTON"], day:"DAY 1", type:"Vintage Shop B", region:"東京・高円寺",
+  mapsUrl:"https://maps.app.goo.gl/R47puc3iNaxcxMmM9",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/a67642db-4faa-47e8-87ab-cf0246ebef00",
+  sourceName:"RIIZE llog"
+},
+{
+  id:7, name:"ありん堂 南台店", nameZh:"Arindo Minamidai 和菓子 / 糰子",
+  addr:"東京都中野区南台３丁目１２−１０ 扶桑ハイツ中野南台",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","ANTON"], day:"DAY 1", type:"Dango Stand", region:"東京・中野区南台",
+  mapsUrl:"https://maps.app.goo.gl/2AGd9tHd1rP6WNos6",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/796a2c81-9a3c-410b-80a1-1c8507367b15",
+  sourceName:"RIIZE llog"
+},
+{
+  id:8, name:"潮風公園南", nameZh:"Shiokaze Park South（城市上方）",
+  addr:"東京都品川区東八潮",
+  members:["SOHEE"], day:"DAY 1", type:"Monorail", region:"東京・品川区",
+  mapsUrl:"https://maps.app.goo.gl/vFKxYRBpF71yGwaCA",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/f1f42b03-6b2b-474f-82b0-da9fbfed1a57?member=sohee",
+  sourceName:"RIIZE llog"
+},
+{
+  id:10, name:"神奈川工科大学グラウンド", nameZh:"神奈川工科大學",
+  addr:"神奈川県厚木市下荻野1030",
+  members:["SOHEE"], day:"DAY 1", type:"Somewhere in the City", region:"神奈川・厚木市",
+  mapsUrl:"https://maps.app.goo.gl/RS3sgzBeWabFczGc8",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/25a53fb6-9555-4645-bfc3-467cfab8d43f?member=sohee",
+  sourceName:"RIIZE llog"
+},
+{
+  id:71, name:"鳥一番", nameZh:"Tori Ichiban 焼き鳥",
+  addr:"東京都中野区南台3丁目12-8",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","ANTON"], day:"DAY 1", type:"Dango Stand", region:"東京・中野区南台",
+  mapsUrl:"https://maps.app.goo.gl/eCZc1VPpRQzub7Xe9",
+  sourceUrl:"https://www.riizeofficial.com/trips/53bef5b2-ef97-44ca-a012-6d4dff58a0d5/stops/796a2c81-9a3c-410b-80a1-1c8507367b15",
+  sourceName:"RIIZE llog"
+},
+{
+  id:14, name:"神奈川工科大学 - NEW HORIZON Trailer", nameZh:"神奈川工科大學 NEW HORIZON Trailer拍攝地",
+  addr:"神奈川県厚木市下荻野（35°29'10.4″N 139°20'34.3″E）",
+  members:["SOHEE"], day:"DAY 1", type:"Trailer Location", region:"神奈川・厚木市",
+  mapsUrl:"https://drive.google.com/drive/folders/1aSRXEQKSjbN8s-DjRL5D8b-KOzxjrPHk?usp=drive_link",
+  sourceUrl:"https://youtu.be/IeJcin9-biU?si=msQbJ31XU9f0o9ty",
+  sourceName:"RIIZE llog · SOHEE"
+},
+/* ===== DAY 2 ===== */
+{
+  id:20, name:"青海東臨時バス駐車場", nameZh:"青海東臨時巴士停車場",
+  addr:"東京都江東区青海１丁目２−３３",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","WONBIN","SOHEE","ANTON"], day:"DAY 2", type:"Downtown", region:"東京・江東区",
+  mapsUrl:"https://maps.app.goo.gl/dHgyxbTv6L3tLiDw6",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/7a9a8b7b-494c-4fff-adb7-9231d5d176e1",
+  sourceName:"RIIZE llog"
+},
+{
+  id:21, name:"GFE STUDIO YOYOGI", nameZh:"GFE STUDIO YOYOGI 代々木 舞蹈工作室",
+  addr:"東京都渋谷区代々木1丁目40-3",
+  members:["SHOTARO","WONBIN","SOHEE"], day:"DAY 2", type:"Dance Studio", region:"東京・渋谷区",
+  mapsUrl:"https://maps.app.goo.gl/93XYzPwpbviLnpA9A",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/9e217cd1-1290-4c93-80a0-6fab105657fe",
+  sourceName:"RIIZE llog"
+},
+{
+  id:22, name:"あけび屋珈琲", nameZh:"Akebiya Coffee 咖啡廳",
+  addr:"神奈川県足柄下郡真鶴町岩242-1",
+  members:["EUNSEOK"], day:"DAY 2", type:"Coffee Shop", region:"神奈川・真鶴町",
+  mapsUrl:"https://maps.app.goo.gl/PRuRdd486aZ8ZBtS7",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/48dae6da-db1d-48bb-af22-a7175e156a56?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:23, name:"SeeSea Burger 真鶴本店", nameZh:"スィースィーバーガー真鶴本店 漢堡",
+  addr:"神奈川県足柄下郡真鶴町岩484",
+  members:["EUNSEOK"], day:"DAY 2", type:"Burger Place", region:"神奈川・真鶴町",
+  mapsUrl:"https://maps.app.goo.gl/EHjpWscc7ua9A7o58",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/b3994a60-fd72-4f42-88bf-ef233cd9258c?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:24, name:"岩海水浴場", nameZh:"いわ かいすいよくじょう岩海水浴場",
+  addr:"神奈川県足柄下郡真鶴町岩957-1",
+  members:["EUNSEOK"], day:"DAY 2", type:"Beach A", region:"神奈川・真鶴町",
+  mapsUrl:"https://maps.app.goo.gl/EgeTaq5gDwrrw4nR7",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/59e16479-13c7-49cf-b61e-066bd9395e99?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:25, name:"潮風公園 周辺", nameZh:"潮風公園 周辺（公園A）",
+  addr:"東京都港区台場2丁目6",
+  members:["SUNGCHAN"], day:"DAY 2", type:"Park A", region:"東京・お台場",
+  mapsUrl:"https://maps.app.goo.gl/cKPi5NHpoTZinm4v6",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/41fe234f-bdce-4a01-90e8-fa9fd616bf74?member=sungchan",
+  sourceName:"RIIZE llog"
+},
+{
+  id:26, name:"Bakery & Pastry Shop", nameZh:"Bakery & Pastry Shop（グランドニッコー東京台場 2F）",
+  addr:"東京都港区台場2丁目6-1 グランドニッコー東京台場 2F",
+  members:["SUNGCHAN"], day:"DAY 2", type:"Park B", region:"東京・お台場",
+  mapsUrl:"https://maps.google.com/maps?q=グランドニッコー東京台場+Bakery",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/ed0b17eb-d0e6-4e67-a71a-cf31f2c69f82?member=sungchan",
+  sourceName:"RIIZE llog"
+},
+{
+  id:27, name:"Ehukai Beach エフカイビーチ", nameZh:"Ehukai Beach エフカイビーチ（御台場海濱公園 冰淇淋🍦）",
+  addr:"東京都港区台場1丁目4-1 マリンハウス 1F",
+  members:["SUNGCHAN"], day:"DAY 2", type:"Park C", region:"東京・お台場",
+  mapsUrl:"https://maps.app.goo.gl/WSYggg8yZFzh5vho6",
+  sourceUrl:"https://www.riizeofficial.com/trips/38386b24-6640-459c-8704-300cea534b63/stops/fc7ce0fd-a9fe-4efe-b708-5fd445da2ace?member=sungchan",
+  sourceName:"RIIZE llog"
+},
+/* ===== DAY 3 ===== */
+{
+  id:30, name:"SKAC", nameZh:"SKWAT KAMEARI ART CENTRE 亀有藝術文化中心",
+  addr:"東京都葛飾区西亀有3丁目26-4",
+  members:["EUNSEOK","WONBIN","SOHEE","ANTON"], day:"DAY 3", type:"Alternative Space", region:"東京・葛飾区",
+  mapsUrl:"https://maps.app.goo.gl/ZbXZFwSSBvhXE3QVA?g_st=ic",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/74fff5d9-13de-4a6b-a409-c959d8488ac2",
+  sourceName:"RIIZE llog"
+},
+{
+  id:31, name:"レインボーブリッジ遊歩道", nameZh:"彩虹大橋遊步道",
+  addr:"東京都港区海岸3丁目33-19",
+  members:["EUNSEOK","WONBIN","SOHEE","ANTON"], day:"DAY 3", type:"Bridge", region:"東京・港区",
+  mapsUrl:"https://maps.app.goo.gl/nmvQk1uaFDWeRs1YA",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/b54d8fd5-c081-4eda-83ac-3e4500a809da",
+  sourceName:"RIIZE llog"
+},
+{
+  id:32, name:"Jazzy Sport Music Shop Tokyo", nameZh:"黑膠唱片店",
+  addr:"東京都目黒区五本木3-17-7",
+  members:["EUNSEOK","WONBIN","SOHEE","ANTON"], day:"DAY 3", type:"Record Shop", region:"東京・目黒区",
+  mapsUrl:"https://maps.app.goo.gl/YfeVWTmsbvYWBBNm7",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/a185d989-a622-4bb6-b044-bbf90250f28e",
+  sourceName:"RIIZE llog"
+},
+{
+  id:33, name:"イケシブ IKEBE SHIBUYA", nameZh:"池部楽器店 渋谷旗艦店",
+  addr:"東京都渋谷区道玄坂1丁目7-4 渋谷スクエアB 1〜4F",
+  members:["EUNSEOK","WONBIN","SOHEE","ANTON"], day:"DAY 3", type:"Audio Equipment Store", region:"東京・渋谷区",
+  mapsUrl:"https://maps.app.goo.gl/RWVSDa5aHixtoSBj6",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/b6fd611a-8f1d-4fdb-b3c2-80cd62da3dc6",
+  sourceName:"RIIZE llog"
+},
+{
+  id:34, name:"自家製麺 うどん五葵", nameZh:"自家製麵 五葵 烏冬麵店",
+  addr:"東京都葛飾区西亀有３丁目２０−14",
+  members:["EUNSEOK","WONBIN","SOHEE","ANTON"], day:"DAY 3", type:"Udon Shop", region:"東京・葛飾区",
+  mapsUrl:"https://maps.app.goo.gl/peU2Gt9xj6sKRmG86?g_st=ic",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/fe0e368e-4f56-498c-9c0b-9db1d0e65493",
+  sourceName:"RIIZE llog"
+},
+
+{
+  id:36, name:"霊友会釈迦殿 駐車場", nameZh:"靈友會釋迦殿 停車場空地",
+  addr:"東京都港区麻布台1丁目7-8",
+  members:["SHOTARO"], day:"DAY 3", type:"Empty Lot", region:"東京・港区",
+  mapsUrl:"https://maps.app.goo.gl/fjCL2tgV4VUQLt8V9?g_st=ic",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/083f84ee-f3e4-47cc-901a-36588629f5c8?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:37, name:"NEW YORK JOE EXCHANGE 下北沢", nameZh:"NEW YORK JOE EXCHANGE 下北沢（古着屋 / 為全員購買服裝）",
+  addr:"東京都世田谷区北沢3丁目26-4 栃倉ビル",
+  members:["SHOTARO"], day:"DAY 3", type:"Shopping for Team Outfits", region:"東京・下北沢",
+  mapsUrl:"https://maps.app.goo.gl/eyRh2MWDhQxmjE2r8",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/640def67-d386-4b9b-ab36-ddc9a1b641db?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:371, name:"RAGTAG 下北沢店", nameZh:"RAGTAG 下北沢店（古着屋）",
+  addr:"東京都世田谷区北沢2丁目34-12",
+  members:["SHOTARO"], day:"DAY 3", type:"Shopping for Team Outfits", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=RAGTAG+下北沢店",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/640def67-d386-4b9b-ab36-ddc9a1b641db?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:372, name:"TreFacStyle Shimokitazawa East Exit", nameZh:"トレファクスタイル下北沢東口店（古着屋）",
+  addr:"東京都世田谷区北沢２丁目32-8",
+  members:["SHOTARO"], day:"DAY 3", type:"Shopping for Team Outfits", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=トレファクスタイル下北沢東口店",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/640def67-d386-4b9b-ab36-ddc9a1b641db?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:373, name:"sowhat vintage", nameZh:"sowhat vintage（帽子・古着）",
+  addr:"東京都世田谷区代沢2丁目29-29 ファミール北沢1F",
+  members:["SHOTARO"], day:"DAY 3", type:"Shopping for Team Outfits", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=sowhat+vintage+下北沢",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/640def67-d386-4b9b-ab36-ddc9a1b641db?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:374, name:"Matcha Passport", nameZh:"Matcha Passport（抹茶咖啡廳☕️）",
+  addr:"東京都世田谷区北沢2丁目31-14 2F Veil Shimokitazawa",
+  members:["SHOTARO"], day:"DAY 3", type:"Shopping for Team Outfits", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=Matcha+Passport+下北沢",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/640def67-d386-4b9b-ab36-ddc9a1b641db?member=shotaro",
+  sourceName:"RIIZE llog"
+},
+{
+  id:38, name:"BELLUSTAR TOKYO, A Pan Pacific Hotel", nameZh:"東京泛太平洋BELLUSTAR酒店",
+  addr:"東京都新宿区歌舞伎町1丁目29-1 TOKYU KABUKICHO TOWER 45F",
+  members:["SUNGCHAN"], day:"DAY 3", type:"Hotel B", region:"東京・新宿",
+  mapsUrl:"https://maps.app.goo.gl/6ChTTFT9iRCyXrDQ9",
+  sourceUrl:"https://www.riizeofficial.com/trips/b402a454-150d-4d76-84e6-91fa49c9cce5/stops/b7889bd6-4da8-47fb-99a8-52b13dd33787?member=sungchan",
+  sourceName:"RIIZE llog"
+},
+/* ===== DAY 4 ===== */
+{
+  id:40, name:"三崎口駅 京急", nameZh:"三崎口駅 京急（車站）",
+  addr:"神奈川県三浦市初声町下宮田",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Station", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.app.goo.gl/Ec6RbQuABHu8ZEU98",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/418ba50a-17cc-4ac4-bf61-53a9a89d33aa",
+  sourceName:"RIIZE llog"
+},
+{
+  id:41, name:"三浦市三崎 漁港", nameZh:"三崎漁港（水岸）",
+  addr:"神奈川県三浦市三崎5丁目245-7",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Waterfront", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.app.goo.gl/cjMWL9oSngimD8pg9",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4b4eed95-aaf0-48cb-8fb5-db8e08da068f",
+  sourceName:"RIIZE llog"
+},
+
+{
+  id:43, name:"城ヶ島大橋", nameZh:"城ヶ島大橋（海岸大橋）",
+  addr:"神奈川県三浦市8",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Coastal Bridge", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=城ヶ島大橋",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/8bfe5da2-4010-4e09-a28e-77c7e036f047",
+  sourceName:"RIIZE llog"
+},
+{
+  id:44, name:"和田長浜海岸", nameZh:"和田長浜海岸",
+  addr:"神奈川県横須賀市長井2丁目12付近",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Beach B", region:"神奈川・横須賀市",
+  mapsUrl:"https://maps.google.com/maps?q=和田長浜海岸+横須賀",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/a07ab4a8-990a-4b57-8018-ca0faf6d546b",
+  sourceName:"RIIZE llog"
+},
+{
+  id:45, name:"東京油組総本店 渋谷組", nameZh:"油蕎麥麵",
+  addr:"東京都渋谷区渋谷3-18-10 大野ビル2号館1F",
+  members:["EUNSEOK"], day:"DAY 4", type:"Noodle Bar", region:"東京・渋谷区",
+  mapsUrl:"https://maps.google.com/maps?q=東京油組総本店+渋谷組",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4a52ee7d-39c0-4469-8848-ebbc2342c4dc?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:46, name:"もつ吉 渋谷 Motsukichi", nameZh:"居酒屋",
+  addr:"東京都渋谷区宇田川町31-1 HULIC & New SHIBUYA 8F",
+  members:["EUNSEOK"], day:"DAY 4", type:"Restaurant", region:"東京・渋谷区",
+  mapsUrl:"https://maps.google.com/maps?q=もつ吉+渋谷",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/d729b051-3ffa-4774-abdb-ae49b11f3e99?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+
+{
+  id:50, name:"東京油組総本店 下北沢組", nameZh:"油蕎麥麵",
+  addr:"東京都世田谷区北沢2-12-15",
+  members:["SOHEE"], day:"DAY 4", type:"Noodle Bar B", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=東京油組総本店+下北沢組",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/f535f97b-5aef-4ae3-b2ea-2225e307d3d5?member=sohee",
+  sourceName:"RIIZE llog"
+},
+{
+  id:51, name:"Shimokitazawa Daisy Bar", nameZh:"下北沢 現場音樂場所",
+  addr:"東京都世田谷区北沢2-2-3 エルサント北沢 B1F",
+  members:["SOHEE"], day:"DAY 4", type:"Live Music Venue", region:"東京・下北沢",
+  mapsUrl:"https://maps.google.com/maps?q=Daisy+Bar+下北沢",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/1be702e9-e934-4258-a81b-15e61fd1d852?member=sohee",
+  sourceName:"RIIZE llog"
+},
+{
+  id:52, name:"屏風ヶ浦", nameZh:"屏風ヶ浦 懸崖旁某處",
+  addr:"千葉県銚子市名洗町 〜 旭市上永井（刑部岬）",
+  members:["ANTON"], day:"DAY 4", type:"Somewhere Along the Cliffs", region:"千葉・銚子市",
+  mapsUrl:"https://maps.app.goo.gl/frtghjAfCeE34hAK9",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/e06fd842-d970-481c-80d0-153f9ca6aa3e?member=anton",
+  sourceName:"RIIZE llog"
+},
+{
+  id:53, name:"トランド", nameZh:"澀谷飲兵衛橫丁 巷弄",
+  addr:"東京都渋谷区渋谷1丁目25-10 のんべい横町内",
+  members:["EUNSEOK"], day:"DAY 4", type:"Noodle Bar Area", region:"東京・渋谷区",
+  mapsUrl:"https://maps.app.goo.gl/kRvU7dth3fPsL2BUA",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4a52ee7d-39c0-4469-8848-ebbc2342c4dc?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:54, name:"GiGO渋谷", nameZh:"遊戲機・夾娃娃機",
+  addr:"東京都渋谷区宇田川町29-4 Zenmall 1F〜3F",
+  members:["EUNSEOK"], day:"DAY 4", type:"Somewhere in the City", region:"東京・渋谷区",
+  mapsUrl:"https://maps.app.goo.gl/bhteiXyUN4U62s9o9",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4a52ee7d-39c0-4469-8848-ebbc2342c4dc?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:541, name:"Dipper Dan 渋谷BEAM店", nameZh:"Dipper Dan Crêpe ディッパーダン 可麗餅店前",
+  addr:"東京都渋谷区宇田川町31-2 渋谷BEAM",
+  members:["EUNSEOK"], day:"DAY 4", type:"Somewhere in the City", region:"東京・渋谷区",
+  mapsUrl:"https://maps.app.goo.gl/mB3w8swYTgjQRVRw8",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/4a52ee7d-39c0-4469-8848-ebbc2342c4dc?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:55, name:"CABA COFFEE BEANS", nameZh:"CABA COFFEE BEANS（三崎 鄰近一角）",
+  addr:"神奈川県三浦市三崎3丁目2-27",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood (Cafe)", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=CABA+COFFEE+BEANS+三崎",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+
+{
+  id:57, name:"pulu pulu pulpo!", nameZh:"pulu pulu pulpo!（章魚燒🐙）",
+  addr:"神奈川県三浦市三崎3丁目5-13",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood (Shop)", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=pulu+pulu+pulpo+三崎",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+{
+  id:561, name:"喫茶トエム", nameZh:"喫茶トエム（三崎 復古咖啡廳 🐱）",
+  addr:"神奈川県三浦市三崎4丁目9-8",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood (Cafe)", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=喫茶トエム+三崎",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+{
+  id:562, name:"三上写真館", nameZh:"三上写真館（三崎 老照相館）",
+  addr:"神奈川県三浦市三崎4丁目8-8-5",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=三上写真館+三崎",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+{
+  id:563, name:"Tanakaya（ハートファイブ タナカヤ）", nameZh:"Tanakaya ハートファイブ タナカヤ（Panasonic 電器舖）",
+  addr:"神奈川県三浦市三崎4丁目",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=Tanakaya+三崎+三浦市",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+{
+  id:564, name:"三崎堂書店", nameZh:"三崎堂書店（書店）",
+  addr:"神奈川県三浦市三崎3丁目2-16",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","SOHEE"], day:"DAY 4", type:"Neighborhood", region:"神奈川・三浦市",
+  mapsUrl:"https://maps.google.com/maps?q=三崎堂書店+三崎",
+  sourceUrl:"https://www.riizeofficial.com/trips/e520aecd-cff4-4acb-87a5-7cb2f53a808d/stops/7d83129e-2674-4335-8802-612bec6bdd13",
+  sourceName:"RIIZE llog"
+},
+{
+  id:58, name:"岩海岸バス停 / 電話亭", nameZh:"岩海岸巴士站 & 電話亭（Silent Walker）",
+  addr:"神奈川県足柄下郡真鶴町岩（35°09'40.4″N 139°08'23.4″E）",
+  members:["EUNSEOK"], day:"DAY 2", type:"Trailer : Silent Walker", region:"神奈川・真鶴町",
+  mapsUrl:"https://maps.app.goo.gl/MBh78KQQXtUXhE5i8",
+  sourceUrl:"https://www.youtube.com/watch?v=fHrPPuU_7QQ",
+  sourceName:"RIIZE llog"
+},
+/* ===== DAY 5 ===== */
+{
+  id:60, name:"チームラボプラネッツ TOKYO DMM", nameZh:"沉浸式美術館",
+  addr:"東京都江東区豊洲6-1-16",
+  members:["SHOTARO","EUNSEOK","SUNGCHAN","WONBIN","SOHEE","ANTON"], day:"DAY 5", type:"Immersive Museum", region:"東京・豊洲",
+  mapsUrl:"https://maps.app.goo.gl/4TMrZ7uUP6Xahnks9",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/54d4ff0b-4ab0-446b-9e59-7a1947040ef6",
+  sourceName:"RIIZE llog"
+},
+{
+  id:61, name:"NORMAN HOUSE 南雪谷", nameZh:"攝影工作室",
+  addr:"東京都大田区南雪谷4-12-12",
+  members:["SHOTARO","WONBIN","SOHEE","ANTON"], day:"DAY 5", type:"Stay", region:"東京・大田区",
+  mapsUrl:"https://maps.app.goo.gl/EF7phReK2Y3RQuCT8",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/4f495968-c4f9-4895-b3ec-296245259605",
+  sourceName:"RIIZE llog"
+},
+{
+  id:62, name:"ナムコ秋葉原店", nameZh:"namco Akihabara",
+  addr:"東京都千代田区外神田１丁目１５−９ B1F〜5F",
+  members:["EUNSEOK"], day:"DAY 5", type:"Figure Shop", region:"東京・秋葉原",
+  mapsUrl:"https://maps.app.goo.gl/PaxsuFkwezKxbQoz6?g_st=il",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/dda9ec6d-90ae-4255-a605-73d9d6b929aa?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:63, name:"ふきや旅館", nameZh:"湯河原溫泉 旅館",
+  addr:"神奈川県足柄下郡湯河原町宮上398",
+  members:["SUNGCHAN"], day:"DAY 5", type:"Ryokan", region:"神奈川・湯河原町",
+  mapsUrl:"https://maps.app.goo.gl/doapKxAaRz1toQtq6",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/ca5688eb-9f87-4b4d-b12e-491d82ad3daa?member=sungchan",
+  sourceName:"RIIZE llog"
+},
+{
+  id:621, name:"コトブキヤ秋葉原館店", nameZh:"KOTOBUKIYA 秋葉原本店",
+  addr:"東京都千代田区外神田１丁目８−８ 岡嶋ビル",
+  members:["EUNSEOK"], day:"DAY 5", type:"Figure Shop", region:"東京・秋葉原",
+  mapsUrl:"https://maps.app.goo.gl/TPbsA84q7YK7Wne98",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/dda9ec6d-90ae-4255-a605-73d9d6b929aa?member=eunseok",
+  sourceName:"RIIZE llog"
+},
+{
+  id:64, name:"Sedai Coffee", nameZh:"セダイコーヒー 世代珈琲 咖啡廳",
+  addr:"東京都渋谷区幡ケ谷１丁目２９−２ THESTEPS B1F",
+  members:["ANTON"], day:"DAY 5", type:"Coffee Shop", region:"東京・幡ヶ谷",
+  mapsUrl:"https://maps.app.goo.gl/FwbpbEid6gjHueno8",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/0732a444-6be7-4990-b4b9-ecfd7b87d3d6?member=anton",
+  sourceName:"RIIZE llog"
+},
+{
+  id:65, name:"LUG Hatagaya", nameZh:"ラグ ハタガヤ 早午餐咖啡廳",
+  addr:"東京都渋谷区幡ヶ谷2-19-1",
+  members:["ANTON"], day:"DAY 5", type:"Brunch Cafe", region:"東京・幡ヶ谷",
+  mapsUrl:"https://maps.app.goo.gl/s78enMxf4sp9G54S7",
+  sourceUrl:"https://www.riizeofficial.com/trips/f6707bfa-3a20-42f4-9c2a-e2b323c70b1c/stops/8a7b5173-fd31-4b82-bbf0-e751848c3ac2?member=anton",
+  sourceName:"RIIZE llog"
+},
 ];
 
-const memberColors = {
-  SHOTARO:'#378ADD', EUNSEOK:'#EF9F27', SUNGCHAN:'#639922',
-  WONBIN:'#7F77DD', SOHEE:'#D4537E', ANTON:'#BA7517'
+const REGION_ORDER = [
+  "東京・お台場","東京・港区","東京・品川区","東京・江東区","東京・豊洲",
+  "東京・渋谷区","東京・新宿","東京・下北沢","東京・中野区南台","東京・高円寺",
+  "東京・池袋","東京・文京区","東京・目黒区","東京・大田区","東京・幡ヶ谷",
+  "東京・葛飾区","東京・秋葉原","東京・千代田区",
+  "神奈川・厚木市","神奈川・横須賀市","神奈川・三浦市","神奈川・真鶴町","神奈川・湯河原町",
+  "千葉・銚子市"
+];
+const REGION_ZH = {
+  "東京・お台場":"台場","東京・港区":"港區","東京・品川区":"品川區","東京・江東区":"江東區","東京・豊洲":"豊洲",
+  "東京・渋谷区":"澀谷","東京・新宿":"新宿","東京・下北沢":"下北澤","東京・中野区南台":"中野","東京・高円寺":"高圓寺",
+  "東京・池袋":"池袋","東京・文京区":"文京區","東京・目黒区":"目黑區","東京・大田区":"大田區","東京・幡ヶ谷":"幡ヶ谷",
+  "東京・葛飾区":"葛飾區","東京・秋葉原":"秋葉原","東京・千代田区":"千代田區",
+  "神奈川・厚木市":"厚木市","神奈川・横須賀市":"橫須賀市","神奈川・三浦市":"三浦市","神奈川・真鶴町":"真鶴町","神奈川・湯河原町":"湯河原町",
+  "千葉・銚子市":"銚子市"
 };
-const dayColors = {
-  'DAY 1':'#534AB7','DAY 2':'#0F6E56','DAY 3':'#993C1D','DAY 4':'#A32D2D','DAY 5':'#3C3489'
+const PARENT_REGIONS = {
+  "東京都": ["東京・お台場","東京・港区","東京・品川区","東京・江東区","東京・豊洲",
+    "東京・渋谷区","東京・新宿","東京・下北沢","東京・中野区南台","東京・高円寺",
+    "東京・池袋","東京・文京区","東京・目黒区","東京・大田区","東京・幡ヶ谷",
+    "東京・葛飾区","東京・秋葉原","東京・千代田区"],
+  "神奈川縣": ["神奈川・厚木市","神奈川・横須賀市","神奈川・三浦市","神奈川・真鶴町","神奈川・湯河原町"],
+  "千葉縣": ["千葉・銚子市"]
 };
+
 const members = ['SHOTARO','EUNSEOK','SUNGCHAN','WONBIN','SOHEE','ANTON'];
 const days = ['DAY 1','DAY 2','DAY 3','DAY 4','DAY 5'];
-
-let currentTab = 'member';
-let activeFilter = 'all';
+const dayLabels = {
+  'DAY 1':'DAY 1 · Let\'s soar','DAY 2':'DAY 2 · Imma go dance',
+  'DAY 3':'DAY 3 · We get into overdrive','DAY 4':'DAY 4 · It\'s like a bomb',
+  'DAY 5':'DAY 5 · Dreaming in a loop'
+};
+let currentTab='member', activeFilter='all';
 
 function switchTab(tab) {
-  currentTab = tab;
-  activeFilter = 'all';
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='member')||(i===1&&tab==='day')));
-  buildFilters();
-  renderGrid();
+  currentTab=tab; activeFilter='all';
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&tab==='member')||(i===1&&tab==='day')||(i===2&&tab==='region')));
+  buildFilters(); renderGrid();
 }
 
 function buildFilters() {
-  const wrap = document.getElementById('filter-wrap');
-  const items = currentTab === 'member' ? members : days;
-  wrap.innerHTML = `<div class="pill active" onclick="setFilter('all',this)">全部</div>` +
-    items.map(v => {
-      const cls = currentTab==='member' ? `member-${v}` : `day-${v.replace(' ','-').toLowerCase()}`;
-      return `<div class="pill ${cls}" onclick="setFilter('${v}',this)">${v}</div>`;
+  const fw=document.getElementById('filter-wrap');
+  if(currentTab==='region'){
+    fw.classList.add('hidden');
+    // update region-index-wrap top after header collapses
+    setTimeout(updateRegionTop, 0);
+    return;
+  }
+  fw.classList.remove('hidden');
+  const items=currentTab==='member'?members:days;
+  document.getElementById('filter-row').innerHTML=
+    `<div class="chip all ${activeFilter==='all'?'active':''}" onclick="setFilter('all',this)">全部</div>`+
+    items.map(v=>{
+      const cls=currentTab==='member'?v:'DAY'+v.split(' ')[1];
+      return `<div class="chip ${cls} ${activeFilter===v?'active':''}" onclick="setFilter('${v}',this)">${currentTab==='member'?(MEMBER_EMOJI[v]+' '+v):dayLabels[v]||v}</div>`;
     }).join('');
 }
 
-function setFilter(val, el) {
-  activeFilter = val;
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  renderGrid();
+function updateRegionTop() {
+  const hdr=document.querySelector('header');
+  const riw=document.getElementById('region-index-wrap');
+  if(hdr && riw) riw.style.top = hdr.offsetHeight + 'px';
+  // also update region-group scroll margin
+  document.querySelectorAll('.region-group').forEach(el=>{
+    el.style.scrollMarginTop = (hdr.offsetHeight + (riw.style.display!=='none'?riw.offsetHeight:0) + 8)+'px';
+  });
+}
+
+function setFilter(val,el) {
+  activeFilter=val;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active'); renderGrid();
 }
 
 function renderGrid() {
-  const grid = document.getElementById('grid');
-  const empty = document.getElementById('empty');
-  const filtered = spots.filter(s => activeFilter==='all' || (currentTab==='member'?s.member:s.day) === activeFilter);
-  document.getElementById('count').textContent = filtered.length + ' 個景點';
-  if (!filtered.length) { grid.innerHTML=''; empty.style.display='block'; return; }
-  empty.style.display = 'none';
-  grid.innerHTML = filtered.map(s => {
-    const mColor = memberColors[s.member] || '#888';
-    const dColor = dayColors[s.day] || '#888';
-    return `<div class="card" onclick="openModal(${s.id})">
-      <div class="card-img">
-        <img src="${s.imgs[0]}" alt="${s.name}" loading="lazy">
-        <span class="badge-day">${s.day}</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">📍 ${s.name}</div>
-        <div class="card-addr">${s.addr}</div>
-        <div class="card-tags">
-          <span class="tag tag-member" style="background:${mColor}22;color:${mColor}">${s.member}</span>
-          <span class="tag tag-type">${s.type}</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  const mainArea=document.getElementById('main-area');
+  mainArea.innerHTML='';
+  const idxWrap=document.getElementById('region-index-wrap');
+  if(idxWrap) idxWrap.style.display='none';
+  if(currentTab==='region'){renderRegion(mainArea);return;}
+  const filtered=spots.filter(s=>activeFilter==='all'||(currentTab==='member'?s.members.includes(activeFilter):s.day===activeFilter));
+  document.getElementById('spot-count').textContent=filtered.length+' 個景點';
+  const grid=document.createElement('div');
+  grid.className='grid'; grid.id='grid';
+  grid.innerHTML=filtered.length?filtered.map(s=>cardHTML(s,activeFilter)).join(''):'<div class="empty">沒有符合的景點</div>';
+  mainArea.appendChild(grid);
 }
 
-function openModal(id) {
-  const s = spots.find(x => x.id===id);
-  if (!s) return;
-  const mColor = memberColors[s.member] || '#888';
-  const dColor = dayColors[s.day] || '#888';
-  document.getElementById('modal-name').textContent = '📍 ' + s.name;
-  document.getElementById('modal-addr').textContent = s.addr;
-  document.getElementById('modal-tags').innerHTML =
-    `<span class="modal-tag" style="background:${dColor}22;color:${dColor}">${s.day}</span>
-     <span class="modal-tag" style="background:${mColor}22;color:${mColor}">${s.member}</span>
-     <span class="modal-tag" style="background:#e8f5ee;color:#0F6E56">${s.type}</span>`;
-  document.getElementById('modal-imgs').innerHTML = s.imgs.map(u =>
-    `<img src="${u}" alt="${s.name}" loading="lazy">`).join('');
-  document.getElementById('modal-source').innerHTML =
-    `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-     同款來源：<a href="${s.sourceUrl}" target="_blank">${s.sourceName}</a>`;
-  document.getElementById('modal-map').innerHTML =
-    `<iframe src="${s.mapsEmbed}" allowfullscreen loading="lazy"></iframe>`;
-  document.getElementById('modal-bg').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function renderRegion(container) {
+  const allRegions=[...new Set(spots.map(s=>s.region))].sort((a,b)=>{
+    const ai=REGION_ORDER.indexOf(a),bi=REGION_ORDER.indexOf(b);
+    return(ai===-1?99:ai)-(bi===-1?99:bi);
+  });
+  let totalCount=0;
+  const idxBtns=document.getElementById('region-index-btns');
+  const idxWrap=document.getElementById('region-index-wrap');
+  let idxHTML=''; let btnIdx=0; let sectionIdx=0;
+  Object.keys(PARENT_REGIONS).forEach(parent=>{
+    const childRegions=PARENT_REGIONS[parent].filter(r=>allRegions.includes(r));
+    if(!childRegions.length)return;
+    const ph=document.createElement('div'); ph.className='section-parent-header'; ph.id='parent-'+sectionIdx;
+    ph.textContent='【'+parent+'】'; container.appendChild(ph);
+    idxHTML+=`<button class="region-btn region-parent-btn" onclick="scrollToId('parent-${sectionIdx}',this)">${parent}</button>`;
+    childRegions.forEach(r=>{
+      const rSpots=spots.filter(s=>s.region===r); totalCount+=rSpots.length;
+      const zhName=REGION_ZH[r]||r;
+      const header=document.createElement('div'); header.className='section-header region-group'; header.id='region-'+btnIdx;
+      header.innerHTML=`<span class="region-zh">${zhName}</span><span class="region-jp">${r.split('・')[1]||r}</span><span class="region-cnt">${rSpots.length}</span>`;
+      container.appendChild(header);
+      idxHTML+=`<button class="region-btn" onclick="scrollToId('region-${btnIdx}',this)">${zhName}</button>`;
+      const grid=document.createElement('div'); grid.className='grid';
+      grid.innerHTML=rSpots.map(s=>cardHTML(s,'all')).join('');
+      container.appendChild(grid); btnIdx++;
+    });
+    sectionIdx++;
+  });
+  idxBtns.innerHTML=idxHTML;
+  const first=idxBtns.querySelector('.region-btn');
+  if(first) first.classList.add('active');
+  idxWrap.style.display='';
+  updateRegionTop();
+  document.getElementById('spot-count').textContent=totalCount+' 個景點';
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-bg')) closeModalBtn();
-}
-function closeModalBtn() {
-  document.getElementById('modal-bg').classList.remove('open');
-  document.body.style.overflow = '';
+function scrollToId(id,btn) {
+  document.querySelectorAll('.region-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-buildFilters();
-renderGrid();
+function cardHTML(s, filter) {
+  const cover=getCoverImg(s, filter);
+  // Show dots: all members if no filter, else only filtered member
+  let displayMembers=(filter&&filter!=='all'&&currentTab==='member'&&s.members.includes(filter))?[filter]:s.members;
+  const dots=displayMembers.map(m=>`<span class="member-dot" style="background:${MC[m]}"></span>`).join('');
+  const strip=displayMembers.map(m=>`<span class="member-seg" style="background:${MC[m]}"></span>`).join('');
+  const imgEl=cover
+    ?`<img src="${cover}" alt="${s.name}" loading="lazy" onerror="this.parentElement.querySelector('.no-img')&&(this.style.display='none');this.insertAdjacentHTML('afterend','<div class=\\'no-img\\'>📍</div>')">`
+    :`<div class="no-img">📍</div>`;
+  return `<div class="card" data-id="${s.id}" data-filter="${filter||'all'}" onclick="openSheet(+this.dataset.id,this.dataset.filter)">
+    <div class="card-img">${imgEl}<span class="day-badge">${s.day}</span><div class="member-strip">${strip}</div></div>
+    <div class="card-body">
+      <div class="card-name"><strong>${s.name}</strong></div>
+      <div class="card-type">${s.type}</div>
+      <div class="card-members">${dots}</div>
+    </div>
+  </div>`;
+}
+
+function openSheet(id, filter) {
+  const s=spots.find(x=>x.id===id);
+  if(!s) return;
+  const f=filter||activeFilter;
+  const dayColor=DC[s.day]||'#333';
+  // Tags: show only filtered member if applicable
+  let displayMembers=(f&&f!=='all'&&currentTab==='member'&&s.members.includes(f))?[f]:s.members;
+  document.getElementById('sheet-tags').innerHTML=
+    `<span class="stag" style="background:${dayColor}22;color:${dayColor}">${s.day}</span>`+
+    `<span class="stag" style="background:#F0EDE8;color:#78716C">${s.type}</span>`+
+    displayMembers.map(m=>`<span class="stag" style="background:${MC[m]}33;color:${MC[m]==='#FBBF24'||MC[m]==='#4ADE80'?'#555':MC[m]}">${MEMBER_EMOJI[m]} ${m}</span>`).join('');
+  document.getElementById('sheet-name').innerHTML='<strong>'+s.name+'</strong>';
+  document.getElementById('sheet-name-sub').textContent=s.nameZh||'';
+  document.getElementById('sheet-addr').textContent='Add. '+s.addr;
+  if(s.note) {
+    const noteEl=document.getElementById('sheet-name-sub');
+    noteEl.textContent=(s.nameZh||'')+' '+s.note;
+  }
+
+  // Images: member-specific CDN + local
+  const cdnImgs=getMemberImgs(s,f).filter(u=>u.endsWith('-image-2200.jpg'));
+  const localImgs=DATA_IMGS[s.id]||[];
+  const imgs=[...cdnImgs,...localImgs];
+  const track=document.getElementById('sheet-imgs');
+  const wrap=document.getElementById('sheet-imgs-wrap');
+  const dotsEl=document.getElementById('img-dots');
+
+  if(imgs.length) {
+    track.innerHTML=imgs.map(u=>`<img src="${u}" alt="${s.name}" loading="lazy" referrerpolicy="origin" onerror="this.style.display='none'">`).join('');
+    if(imgs.length>1) {
+      dotsEl.innerHTML=imgs.map((_,i)=>`<div class="img-dot${i===0?' active':''}"></div>`).join('');
+      wrap.onscroll=()=>{
+        const idx=Math.round(wrap.scrollLeft/wrap.offsetWidth);
+        document.querySelectorAll('.img-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+      };
+    } else { dotsEl.innerHTML=''; }
+  } else {
+    track.innerHTML=`<div style="width:100vw;height:260px;background:#F0EDE8;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px"><div style="font-size:32px">📍</div><div style="font-size:11px;color:#7A7068;font-family:'DM Mono',monospace;letter-spacing:.04em">${s.type}</div></div>`;
+    dotsEl.innerHTML='';
+  }
+  wrap.scrollLeft=0;
+
+  // Source & Map
+  document.getElementById('sheet-source').innerHTML=
+    `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+     同款來源：<a href="${s.sourceUrl}" target="_blank">RIIZE llog</a>`;
+  const mapLink=s.mapsUrl||('https://maps.google.com/maps?q='+encodeURIComponent(s.name+' '+s.addr));
+  document.getElementById('sheet-map-wrap').innerHTML=
+    `<a class="map-open-btn" href="${mapLink}" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      在 Google Maps 中查看
+    </a>`;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeSheet(e){if(e.target===document.getElementById('overlay'))closeSheetBtn();}
+function closeSheetBtn(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+
+// Init
+buildFilters(); renderGrid();
+document.getElementById('spot-count').textContent=spots.length+' 個景點';
 </script>
 </body>
 </html>
